@@ -11,6 +11,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  var resList = ["assets/banner_images/food1.png", "assets/banner_images/food2.png", "assets/banner_images/food3.png"];
+  var nameList = ["영통 왕갈비", "영통 스시", "영통 파스타"];
+  var rateList = ["4.3", "4.0", "3.9"];
+  var numReviewList = ["25", "22", "20"];
+
   final _thumbWheels = ["카테고리", "기준"];
   final _categoryList = ["아무거나", "한식", "일식", "중식", "양식"];
   final _orderList = ["최신순", "평점순", "리뷰순"];
@@ -180,23 +185,149 @@ class _HomeState extends State<Home> {
                               ]
                             )
                           ),
-                          const SizedBox(
-                              height: 20
-                          ),
+                          const SizedBox(height: 20)
                         ]
                       ),
-                      const SizedBox(
+                      // 결과 맛집
+                      SizedBox(
                           width: double.infinity,
                           child: Padding(
-                              padding: EdgeInsets.only(left: 20),
-                              child: Text(
-                                  "결과 맛집",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12
+                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                      "결과 맛집",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 12
+                                      )
+                                  ),
+                                  SizedBox(
+                                    width: 45,
+                                    height: 11,
+                                    child: TextButton(
+                                      onPressed: () {},
+                                        style: TextButton.styleFrom(
+                                          padding: EdgeInsets.zero
+                                        ),
+                                      child: Row(
+                                        children: [
+                                          const Text(
+                                              '더보기',
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Color(0xFF898989)
+                                              )
+                                          ),
+                                          const SizedBox(width: 4),
+                                          SizedBox(
+                                              width: 6,
+                                              height: 11,
+                                              child: SvgPicture.asset("assets/icons/right_arrow_icon.svg", color: const Color(0xFF898989),)
+                                          )
+                                        ],
+                                      )
+                                    )
                                   )
+                                ]
                               )
                           )
+                      ),
+                      const SizedBox(height: 20),
+                      // 맛집 정렬
+                      SingleChildScrollView(
+                        padding: const EdgeInsets.only(left: 20),
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            for (var i = 0; i < resList.length; i++)
+                              Padding(
+                                  padding: const EdgeInsets.only(right: 10, bottom: 5),
+                                  child: Container(
+                                    width: 140,
+                                    height: 190,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(8),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          color: Color.fromRGBO(0, 0, 0, 0.5),
+                                          offset: Offset(
+                                            0.0,
+                                            2.0
+                                          ),
+                                          blurRadius: 2.0,
+                                          spreadRadius: 0.0
+                                        )
+                                      ]
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          width: 140,
+                                          height: 140,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(8),
+                                            image: DecorationImage(
+                                              image: AssetImage(resList[i]),
+                                              fit: BoxFit.cover
+                                            )
+                                          ),
+                                        ),
+                                        Padding(
+                                            padding: const EdgeInsets.all(10),
+                                            child: Column(
+                                              children: [
+                                                SizedBox(
+                                                  width: double.infinity,
+                                                  child: Text(
+                                                    nameList[i],
+                                                    style: const TextStyle(
+                                                        fontWeight: FontWeight.w700,
+                                                        fontSize: 12
+                                                    ),
+                                                  )
+                                                ),
+                                                const SizedBox(height: 5),
+                                                SizedBox(
+                                                  width: double.infinity,
+                                                  child: Row(
+                                                    children: [
+                                                      SizedBox(
+                                                        width: 11,
+                                                        height: 11,
+                                                        child: SvgPicture.asset("assets/icons/star_filled_icon.svg"),
+                                                      ),
+                                                      const SizedBox(width: 2),
+                                                      Text(
+                                                        rateList[i],
+                                                        style: const TextStyle(
+                                                          fontSize: 10
+                                                        ),
+                                                      ),
+                                                      const SizedBox(width: 5),
+                                                      Text(
+                                                        "(" + numReviewList[i] + "개 리뷰)",
+                                                        style: const TextStyle(
+                                                          color: Color(0xFF898989),
+                                                          fontSize: 10
+                                                        )
+                                                      )
+                                                    ]
+                                                  )
+                                                )
+                                              ]
+                                            )
+                                        )
+                                      ]
+                                    )
+                                  )
+                              )
+                          ]
+                        )
                       )
                   ]
                 )

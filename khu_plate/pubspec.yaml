@@ -68,6 +68,7 @@ flutter:
     - assets/icons/thumb_wheel_deco_icon.svg
     - assets/icons/move_left_arrow_icon.svg
     - assets/icons/move_right_arrow_icon.svg
+    - assets/icons/star_filled_icon.svg
     - assets/banner_images/food1.png
     - assets/banner_images/food2.png
     - assets/banner_images/food3.png

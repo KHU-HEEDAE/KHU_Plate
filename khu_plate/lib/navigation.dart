@@ -39,7 +39,20 @@ class _NavState extends State<Nav> {
         ],
         onPageChanged: _onPageChange,
       ),
-      bottomNavigationBar: SizedBox(
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Color.fromRGBO(0, 0, 0, 0.20),
+              offset: Offset(
+                0.0,
+                -1.0
+              ),
+              blurRadius: 10.0,
+              spreadRadius: 0.0
+            )
+          ]
+        ),
         height: 76,
         child: BottomNavigationBar(
           currentIndex: _selectedIndex,
