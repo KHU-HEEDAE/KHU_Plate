@@ -1,10 +1,10 @@
 # KHU_Plate
-### Flutter version:
+### Flutter Version:
 ```
 2.5.2
 ```
 
-### Compiles:
+### Compile and Debug on Chrome:
 ```
-flutter run
+flutter run -d chrome
 ```

@@ -56,6 +56,21 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/icons/home_icon.svg
+    - assets/icons/more_icon.svg
+    - assets/icons/review_feed_icon.svg
+    - assets/icons/write_review_icon.svg
+    - assets/icons/right_arrow_icon.svg
+    - assets/icons/pagination_dash.svg
+    - assets/icons/pagination_dot.svg
+    - assets/icons/search_icon.svg
+    - assets/icons/thumb_wheel_deco_icon.svg
+    - assets/icons/move_left_arrow_icon.svg
+    - assets/icons/move_right_arrow_icon.svg
+    - assets/banner_images/food1.png
+    - assets/banner_images/food2.png
+    - assets/banner_images/food3.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
