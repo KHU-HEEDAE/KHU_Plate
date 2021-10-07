@@ -5,33 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="846c2e32-3d6e-4583-98c4-1d7bc9a60059" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/khu_plate/assets/banner_images/food1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/khu_plate/assets/banner_images/food2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/khu_plate/assets/banner_images/food3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/khu_plate/assets/icons/move_left_arrow_icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/khu_plate/assets/icons/move_right_arrow_icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/khu_plate/assets/icons/pagination_dash.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/khu_plate/assets/icons/pagination_dot.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/khu_plate/assets/icons/right_arrow_icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/khu_plate/assets/icons/search_icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/khu_plate/assets/icons/thumb_wheel_deco_icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/khu_plate/lib/components/home_carousel.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/khu_plate/lib/components/search_bar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/KHU_Plate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/KHU_Plate.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/khu_plate/assets/icons/star_filled_icon.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/khu_plate/android/app/src/main/res/drawable-v21/launch_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/khu_plate/android/app/src/main/res/drawable-v21/launch_background.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/khu_plate/android/app/src/main/res/drawable/launch_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/khu_plate/android/app/src/main/res/drawable/launch_background.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/khu_plate/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/khu_plate/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/khu_plate/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/khu_plate/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/khu_plate/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/khu_plate/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/khu_plate/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/khu_plate/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/khu_plate/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/khu_plate/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/khu_plate/assets/icons/mypage_icon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/khu_plate/assets/icons/more_icon.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khu_plate/lib/components/home_carousel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/khu_plate/lib/components/home_carousel.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/khu_plate/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/khu_plate/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/khu_plate/lib/navigation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/khu_plate/lib/navigation.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/khu_plate/lib/screens/home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/khu_plate/lib/screens/home.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/khu_plate/lib/screens/mypage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/khu_plate/lib/screens/more.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/khu_plate/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/khu_plate/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,6 +27,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1ytSiilUkvZaW3LYZc8IDzLEu2Z" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">

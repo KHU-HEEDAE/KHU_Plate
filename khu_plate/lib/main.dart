@@ -26,7 +26,8 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Nexon_Gothic',
         primarySwatch: Colors.grey,
       ),
-      home: Nav()
+      home: Nav(),
+      debugShowCheckedModeBanner: false
     );
   }
 }

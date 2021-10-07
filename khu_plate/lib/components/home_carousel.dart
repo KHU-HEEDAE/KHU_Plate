@@ -10,7 +10,6 @@ class Carousel extends StatefulWidget {
 }
 
 class _CarouselState extends State<Carousel> {
-
   var imgList = ["assets/banner_images/food1.png", "assets/banner_images/food2.png", "assets/banner_images/food3.png"];
   var textList1 = ["당신에게 추천하는 고깃집!", "당신에게 추천하는 생선집!", "당신에게 추천하는 파스타집!"];
   var textList2 = ["고기 맛집 보러 가기", "생선 맛집 보러 가기", "파스타 맛집 보러 가기"];
