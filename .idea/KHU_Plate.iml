@@ -20,6 +20,9 @@
       <excludeFolder url="file://$MODULE_DIR$/khu_plate/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/khu_plate/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/khu_plate/build" />
+      <excludeFolder url="file://$MODULE_DIR$/khu_plate/android/app/src/main/java" />
+      <excludeFolder url="file://$MODULE_DIR$/khu_plate/android/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/khu_plate/.idea" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 30 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
