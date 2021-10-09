@@ -36,7 +36,7 @@ public class Food {
     private int reviewNum;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="CATEOGORY_ID")
+    @JoinColumn(name="CATEGORY_ID")
     private Category category;
 
     @OneToMany(mappedBy = "food")

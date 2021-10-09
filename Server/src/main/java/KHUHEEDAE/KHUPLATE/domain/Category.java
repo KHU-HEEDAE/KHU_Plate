@@ -13,7 +13,7 @@ public class Category {
     @Column(name="CATEGORY_ID")
     private Long id;
 
-    @Column(name="CATEOGRY_NAME",nullable = false)
+    @Column(name="CATEGORY_NAME",nullable = false)
     private String name;
 
 
