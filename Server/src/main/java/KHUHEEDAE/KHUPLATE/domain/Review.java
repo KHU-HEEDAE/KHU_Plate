@@ -17,21 +17,27 @@ public class Review {
     @Column(name="REVIEW_ID")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name="FOOD_ID")
-    private Food food;
-
     @Column(name="REVIEW_CONTENT")
     private String content;
 
-    @Column(name="REVIEW_RATE")
+    @Column(name="REVIEW_RATE",nullable = false)
     private int rate;
 
-    @Column(name="REVIEW_OWNER")
+    @Column(name="REVIEW_OWNER",nullable = false)
     private String reviewer;
 
     @Column(name="REVIEW_DATE")
     @CreationTimestamp
     private LocalDateTime date;
 
+    @ManyToOne
+    @JoinColumn(name="FOOD_ID")
+    private Food food;
+
+    public void setFood(Food food){
+        this.food=food;
+        if(!food.getReviewList().contains(this)){
+            food.getReviewList().add(this);
+        }
+    }
 }

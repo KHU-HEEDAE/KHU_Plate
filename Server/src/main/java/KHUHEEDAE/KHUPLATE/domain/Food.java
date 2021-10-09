@@ -2,12 +2,16 @@ package KHUHEEDAE.KHUPLATE.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @Table(name="FOOD")
 public class Food {
@@ -34,5 +38,15 @@ public class Food {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name="CATEOGORY_ID")
     private Category category;
+
+    @OneToMany(mappedBy = "food")
+    private List<Review> reviewList = new ArrayList<Review>();
+
+    public void addReview(Review review){
+        this.reviewList.add(review);
+        if(review.getFood()!=this){
+            review.setFood(this);
+        }
+    }
 
 }

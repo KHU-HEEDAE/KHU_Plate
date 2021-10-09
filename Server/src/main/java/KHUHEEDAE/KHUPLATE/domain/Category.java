@@ -1,8 +1,11 @@
 package KHUHEEDAE.KHUPLATE.domain;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
+@NoArgsConstructor
 @Table(name="CATEGORY")
 public class Category {
 
@@ -10,7 +13,7 @@ public class Category {
     @Column(name="CATEGORY_ID")
     private Long id;
 
-    @Column(name="CATEOGRY_NAME")
+    @Column(name="CATEOGRY_NAME",nullable = false)
     private String name;
 
 
