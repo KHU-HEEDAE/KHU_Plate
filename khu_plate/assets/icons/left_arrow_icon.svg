@@ -4,8 +4,8 @@
     <g id="Application" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Galaxy-S10----Home" transform="translate(-157.000000, -188.000000)" fill="#FFFFFF" stroke="#FFFFFF">
             <g id="Group-4" transform="translate(157.000000, 188.000000)">
-                <rect id="Rectangle" transform="translate(4.000000, 3.500000) rotate(45.000000) translate(-4.000000, -3.500000) " x="0.5" y="3.5" width="7" height="1"></rect>
-                <rect id="Rectangle-Copy-8" transform="translate(4.000000, 8.500000) rotate(-45.000000) translate(-4.5000000, -8.500000) " x="0.5" y="8.5" width="7.5" height="1"></rect>
+                <rect id="Rectangle" transform="translate(4.000000, 3.500000) rotate(-45.000000) translate(-4.000000, -3.500000) " x="0.5" y="3.5" width="7" height="1"></rect>
+                <rect id="Rectangle-Copy-8" transform="translate(4.000000, 8.500000) rotate(45.000000) translate(-4.000000, -8.500000) " x="0.5" y="8.5" width="7.5" height="1"></rect>
             </g>
         </g>
     </g>

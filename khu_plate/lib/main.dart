@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'navigation.dart';
+import 'package:khu_plate/modules/route_generator.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'KHU_App',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -26,7 +25,8 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Nexon_Gothic',
         primarySwatch: Colors.grey,
       ),
-      home: Nav(),
+      initialRoute: '/',
+      onGenerateRoute: RouteGenerator.generateRoute,
       debugShowCheckedModeBanner: false
     );
   }
