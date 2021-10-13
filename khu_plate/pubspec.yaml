@@ -62,6 +62,7 @@ flutter:
     - assets/icons/review_feed_icon.svg
     - assets/icons/write_review_icon.svg
     - assets/icons/right_arrow_icon.svg
+    - assets/icons/left_arrow_icon.svg
     - assets/icons/pagination_dash.svg
     - assets/icons/pagination_dot.svg
     - assets/icons/search_icon.svg
@@ -69,9 +70,14 @@ flutter:
     - assets/icons/move_left_arrow_icon.svg
     - assets/icons/move_right_arrow_icon.svg
     - assets/icons/star_filled_icon.svg
+    - assets/icons/star_half_icon.svg
+    - assets/icons/avatar_icon.svg
+    - assets/icons/avatar_icon.png
     - assets/banner_images/food1.png
     - assets/banner_images/food2.png
     - assets/banner_images/food3.png
+    - assets/banner_images/food4.png
+    - assets/banner_images/food5.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

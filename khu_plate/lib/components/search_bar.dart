@@ -29,6 +29,9 @@ class _SearchBarState extends State<SearchBar> {
                       hintColor: Colors.white
                   ),
                   child: TextField(
+                      controller: TextEditingController(
+                        text: _search
+                      ),
                       autocorrect: true,
                       style: const TextStyle(color: Colors.white),
                       cursorColor: Colors.white,

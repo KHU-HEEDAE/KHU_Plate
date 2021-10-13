@@ -27,6 +27,7 @@ class _NavState extends State<Nav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: PageView(
           controller: _pageController,
           children: const [
@@ -68,7 +69,9 @@ class _NavState extends State<Nav> {
                           height: 24,
                           child: Padding(
                               padding: const EdgeInsets.only(bottom: 4),
-                              child: SvgPicture.asset("assets/icons/home_icon.svg"))),
+                              child: SvgPicture.asset("assets/icons/home_icon.svg")
+                          )
+                      ),
                       activeIcon: SizedBox(
                           width: 24,
                           height: 24,
