@@ -10,6 +10,27 @@ class Carousel extends StatefulWidget {
 }
 
 class _CarouselState extends State<Carousel> {
+  @override
+  void initState() {
+    super.initState();
+
+    resData = _getData();
+
+    Timer.periodic(const Duration(seconds: 5), (Timer timer) {
+      _pageController.animateToPage(
+        ++_currentBanner,
+        duration: const Duration(milliseconds: 350),
+        curve: Curves.easeIn,
+      );
+    });
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   int _currentBanner = 0;
 
   final List<Widget> _pageViewChildren = [];
@@ -45,21 +66,6 @@ class _CarouselState extends State<Carousel> {
   }
 
   Future<Map<String, List<String>>>? resData;
-
-  @override
-  void initState() {
-    super.initState();
-
-    resData = _getData();
-
-    Timer.periodic(const Duration(seconds: 5), (Timer timer) {
-      _pageController.animateToPage(
-        ++_currentBanner,
-        duration: const Duration(milliseconds: 350),
-        curve: Curves.easeIn,
-      );
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

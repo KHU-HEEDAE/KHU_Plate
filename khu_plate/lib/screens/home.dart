@@ -13,6 +13,20 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    super.initState();
+
+    resData = _getData();
+  }
+
+  @override
+  void dispose() {
+    _categoryController.dispose();
+    _orderController.dispose();
+    super.dispose();
+  }
+
   Future<Map<String, List<String>>> _getData() async {
     await Future.delayed(const Duration(seconds: 2));
 
@@ -49,13 +63,6 @@ class _HomeState extends State<Home> {
   }
 
   Future<Map<String, List<String>>>? resData;
-
-  @override
-  void initState() {
-    super.initState();
-
-    resData = _getData();
-  }
 
   final _thumbWheels = ["카테고리", "기준"];
   final _categoryList = ["아무거나", "한식", "일식", "중식", "양식"];
