@@ -10,13 +10,15 @@ class Carousel extends StatefulWidget {
 }
 
 class _CarouselState extends State<Carousel> {
+  late Timer _timer;
+
   @override
   void initState() {
     super.initState();
 
     resData = _getData();
 
-    Timer.periodic(const Duration(seconds: 5), (Timer timer) {
+    _timer = Timer.periodic(const Duration(seconds: 5), (Timer timer) {
       _pageController.animateToPage(
         ++_currentBanner,
         duration: const Duration(milliseconds: 350),
@@ -27,6 +29,7 @@ class _CarouselState extends State<Carousel> {
 
   @override
   void dispose() {
+    _timer.cancel();
     _pageController.dispose();
     super.dispose();
   }

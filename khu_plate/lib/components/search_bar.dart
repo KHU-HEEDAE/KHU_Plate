@@ -10,7 +10,10 @@ class SearchBar extends StatefulWidget {
 
 class _SearchBarState extends State<SearchBar> {
   bool _isSearching = false;
-  String _search = "";
+
+  String _search = '';
+
+  final _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,49 +23,41 @@ class _SearchBarState extends State<SearchBar> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              _isSearching
-              ? Expanded(
+              Visibility(
+                visible: _isSearching,
                 child: Theme(
                   data: ThemeData(
                       primaryColor: Colors.white,
-                      accentColor: Colors.white,
                       hintColor: Colors.white
                   ),
-                  child: TextField(
-                      controller: TextEditingController(
-                        text: _search
-                      ),
-                      autocorrect: true,
+                  child: Expanded(
+                    child: TextField(
+                      controller: _searchController,
                       style: const TextStyle(color: Colors.white),
                       cursorColor: Colors.white,
                       decoration: const InputDecoration(
-                          labelStyle: TextStyle(color: Colors.white),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          border: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Colors.white
-                              )
-                          ),
-                          hintText: "음식점을 검색하세요!"
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        hintText: "음식점을 검색하세요!"
                       ),
-                      onChanged: (string) {
+                      onChanged: (val) {
                         setState(() {
-                          _search = string;
+                          _search = _searchController.text;
                         });
                       },
-                      onSubmitted: (string) {
-                        _search = string;
+                      onSubmitted: (val) {
+                        setState(() {
+                          _search = _searchController.text;
+                        });
+                        print("search: $_search");
                       }
-                  ),
+                    )
+                  )
                 )
-              )
-              : const Expanded(
-                child: SizedBox(width: 0),
               ),
               SizedBox(
                 child: IconButton(

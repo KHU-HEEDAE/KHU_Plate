@@ -26,121 +26,124 @@ class _NavState extends State<Nav> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: PageView(
-          controller: _pageController,
-          children: const [
-            Home(),
-            ReviewFeed(),
-            WriteReview(),
-            More()
-          ],
-          onPageChanged: _onPageChange,
-        ),
-        bottomNavigationBar: Container(
-            decoration: const BoxDecoration(boxShadow: [
-              BoxShadow(
-                  color: Color.fromRGBO(0, 0, 0, 0.20),
-                  offset: Offset(0.0, -1.0),
-                  blurRadius: 10.0,
-                  spreadRadius: 0.0
+    return GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: PageView(
+            controller: _pageController,
+            children: const [
+              Home(),
+              ReviewFeed(),
+              WriteReview(),
+              More()
+            ],
+            onPageChanged: _onPageChange,
+          ),
+          bottomNavigationBar: Container(
+              decoration: const BoxDecoration(boxShadow: [
+                BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.20),
+                    offset: Offset(0.0, -1.0),
+                    blurRadius: 10.0,
+                    spreadRadius: 0.0
+                )
+              ]),
+              height: 76,
+              child: BottomNavigationBar(
+                  currentIndex: _selectedIndex,
+                  onTap: (index) {
+                    _pageController.animateToPage(
+                        index,
+                        duration: const Duration(milliseconds: 200),
+                        curve: Curves.easeIn
+                    );
+                  },
+                  selectedItemColor: Colors.black,
+                  unselectedItemColor: const Color(0xFF898989),
+                  showUnselectedLabels: true,
+                  selectedFontSize: 10,
+                  unselectedFontSize: 10,
+                  items: <BottomNavigationBarItem>[
+                    BottomNavigationBarItem(
+                        icon: SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: Padding(
+                                padding: const EdgeInsets.only(bottom: 4),
+                                child: SvgPicture.asset("assets/icons/home_icon.svg")
+                            )
+                        ),
+                        activeIcon: SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: Padding(
+                                padding: const EdgeInsets.only(bottom: 4),
+                                child: SvgPicture.asset("assets/icons/home_icon.svg", color: Colors.black)
+                            )
+                        ),
+                        label: '홈'
+                    ),
+                    BottomNavigationBarItem(
+                        icon: SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: Padding(
+                                padding: const EdgeInsets.only(bottom: 4),
+                                child: SvgPicture.asset("assets/icons/review_feed_icon.svg")
+                            )
+                        ),
+                        activeIcon: SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: Padding(
+                                padding: const EdgeInsets.only(bottom: 4),
+                                child: SvgPicture.asset("assets/icons/review_feed_icon.svg", color: Colors.black)
+                            )
+                        ),
+                        label: '최신리뷰'
+                    ),
+                    BottomNavigationBarItem(
+                        icon: SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: Padding(
+                                padding: const EdgeInsets.only(bottom: 4),
+                                child: SvgPicture.asset("assets/icons/write_review_icon.svg")
+                            )
+                        ),
+                        activeIcon: SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: Padding(
+                                padding: const EdgeInsets.only(bottom: 4),
+                                child: SvgPicture.asset("assets/icons/write_review_icon.svg", color: Colors.black)
+                            )
+                        ),
+                        label: '리뷰작성'
+                    ),
+                    BottomNavigationBarItem(
+                        icon: SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: Padding(
+                                padding: const EdgeInsets.only(bottom: 4),
+                                child: SvgPicture.asset("assets/icons/more_icon.svg")
+                            )
+                        ),
+                        activeIcon: SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: Padding(
+                                padding: const EdgeInsets.only(bottom: 4),
+                                child: SvgPicture.asset("assets/icons/more_icon.svg", color: Colors.black)
+                            )
+                        ),
+                        label: '더보기'
+                    )
+                  ]
               )
-            ]),
-            height: 76,
-            child: BottomNavigationBar(
-                currentIndex: _selectedIndex,
-                onTap: (index) {
-                  _pageController.animateToPage(
-                      index,
-                      duration: const Duration(milliseconds: 200),
-                      curve: Curves.easeIn
-                  );
-                },
-                selectedItemColor: Colors.black,
-                unselectedItemColor: const Color(0xFF898989),
-                showUnselectedLabels: true,
-                selectedFontSize: 10,
-                unselectedFontSize: 10,
-                items: <BottomNavigationBarItem>[
-                  BottomNavigationBarItem(
-                      icon: SizedBox(
-                          width: 24,
-                          height: 24,
-                          child: Padding(
-                              padding: const EdgeInsets.only(bottom: 4),
-                              child: SvgPicture.asset("assets/icons/home_icon.svg")
-                          )
-                      ),
-                      activeIcon: SizedBox(
-                          width: 24,
-                          height: 24,
-                          child: Padding(
-                              padding: const EdgeInsets.only(bottom: 4),
-                              child: SvgPicture.asset("assets/icons/home_icon.svg", color: Colors.black)
-                          )
-                      ),
-                      label: '홈'
-                  ),
-                  BottomNavigationBarItem(
-                      icon: SizedBox(
-                          width: 24,
-                          height: 24,
-                          child: Padding(
-                              padding: const EdgeInsets.only(bottom: 4),
-                              child: SvgPicture.asset("assets/icons/review_feed_icon.svg")
-                          )
-                      ),
-                      activeIcon: SizedBox(
-                          width: 24,
-                          height: 24,
-                          child: Padding(
-                              padding: const EdgeInsets.only(bottom: 4),
-                              child: SvgPicture.asset("assets/icons/review_feed_icon.svg", color: Colors.black)
-                          )
-                      ),
-                      label: '최신리뷰'
-                  ),
-                  BottomNavigationBarItem(
-                      icon: SizedBox(
-                          width: 24,
-                          height: 24,
-                          child: Padding(
-                              padding: const EdgeInsets.only(bottom: 4),
-                              child: SvgPicture.asset("assets/icons/write_review_icon.svg")
-                          )
-                      ),
-                      activeIcon: SizedBox(
-                          width: 24,
-                          height: 24,
-                          child: Padding(
-                              padding: const EdgeInsets.only(bottom: 4),
-                              child: SvgPicture.asset("assets/icons/write_review_icon.svg", color: Colors.black)
-                          )
-                      ),
-                      label: '리뷰작성'
-                  ),
-                  BottomNavigationBarItem(
-                      icon: SizedBox(
-                          width: 24,
-                          height: 24,
-                          child: Padding(
-                              padding: const EdgeInsets.only(bottom: 4),
-                              child: SvgPicture.asset("assets/icons/more_icon.svg")
-                          )
-                      ),
-                      activeIcon: SizedBox(
-                          width: 24,
-                          height: 24,
-                          child: Padding(
-                              padding: const EdgeInsets.only(bottom: 4),
-                              child: SvgPicture.asset("assets/icons/more_icon.svg", color: Colors.black)
-                          )
-                      ),
-                      label: '더보기'
-                  )
-                ]
-            )
+          )
         )
     );
   }
