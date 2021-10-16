@@ -47,4 +47,11 @@ public class FoodController {
         Food food = foodService.findOne(foodId);
         return new FoodDetailDTO(food);
     }
+
+    //음식점 이름 검색
+    @GetMapping("/search")
+    public List<FoodDTO> searchFoodList(@RequestParam("keyword") String keyword){
+        List<FoodDTO> foodList = foodService.searchAll(keyword);
+        return foodList;
+    }
 }
