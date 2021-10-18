@@ -5,13 +5,21 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
 class WriteReview extends StatefulWidget {
-  const WriteReview({Key? key}) : super(key: key);
+  const WriteReview({Key? key, this.resNamePara = ''}) : super(key: key);
+
+  final String resNamePara;
 
   @override
   _WriteReviewState createState() => _WriteReviewState();
 }
 
 class _WriteReviewState extends State<WriteReview> {
+  @override
+  void initState () {
+    super.initState();
+    _resName = widget.resNamePara;
+  }
+
   String _resName = '';
   double _rateValue = 0;
   File? _imageFile;
@@ -69,55 +77,65 @@ class _WriteReviewState extends State<WriteReview> {
 
   @override
   Widget build(BuildContext context) {
+    String tenth = _rateValue.toStringAsFixed(1).split('.')[1];
+    bool isHalfStar = tenth != '0';
+    int rateInt = _rateValue.toInt();
+
     return SafeArea(
-        child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                    children: [
-                      const SizedBox(
-                          width: double.infinity,
-                          child: Text(
-                            '평가할 맛집 선택',
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500
-                            ),
-                          )
-                      ),
-                      const SizedBox(height: 10),
-                      SizedBox(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                  children: [
+                    const SizedBox(
+                        width: double.infinity,
+                        child: Text(
+                          '평가할 맛집 선택',
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500
+                          ),
+                        )
+                    ),
+                    const SizedBox(height: 10),
+                    SizedBox(
                         height: 40,
                         child: TextField(
                           controller: _resNameController,
                           textInputAction: TextInputAction.done,
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
-                            enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
-                            ),
-                            focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
-                            ),
-                            label: const Text(
-                              '음식점 이름',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.black
-                              )
-                            ),
-                            suffixIcon: SizedBox(
-                                width: 20,
-                                height: 20,
-                                child: IconButton(
-                                  icon: SvgPicture.asset(
-                                      "assets/icons/search_icon.svg",
-                                      width: 20,
-                                      height: 20,
+                              filled: true,
+                              fillColor: const Color(0xFFEEEEEE),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide: const BorderSide(color: Colors.transparent),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide: const BorderSide(color: Colors.transparent),
+                              ),
+                              label: const Text(
+                                  '음식점 이름',
+                                  style: TextStyle(
+                                      fontSize: 12,
                                       color: Colors.black
-                                  ),
-                                  onPressed: () {  }
-                                )
-                            )
+                                  )
+                              ),
+                              suffixIcon: SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: IconButton(
+                                      icon: SvgPicture.asset(
+                                          "assets/icons/search_icon.svg",
+                                          width: 20,
+                                          height: 20,
+                                          color: Colors.black
+                                      ),
+                                      onPressed: () {  }
+                                  )
+                              )
                           ),
                           onChanged: (val) {
                             setState(() {
@@ -130,20 +148,20 @@ class _WriteReviewState extends State<WriteReview> {
                             });
                           },
                         )
-                      ),
-                      const SizedBox(height: 25),
-                      const SizedBox(
-                          width: double.infinity,
-                          child: Text(
-                            '리뷰하고 싶은 맛집이 안 보인다면..?',
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500
-                            ),
-                          )
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
+                    ),
+                    const SizedBox(height: 25),
+                    const SizedBox(
+                        width: double.infinity,
+                        child: Text(
+                          '리뷰하고 싶은 맛집이 안 보인다면..?',
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500
+                          ),
+                        )
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
                         children: [
                           SizedBox(
                               width: 115,
@@ -177,127 +195,155 @@ class _WriteReviewState extends State<WriteReview> {
                               )
                           )
                         ]
-                      ),
-                      const SizedBox(height: 25),
-                      const SizedBox(
-                          width: double.infinity,
-                          child: Text(
-                            '별점 주기',
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500
-                            ),
-                          )
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
+                    ),
+                    const SizedBox(height: 25),
+                    const SizedBox(
+                        width: double.infinity,
+                        child: Text(
+                          '별점 주기',
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500
+                          ),
+                        )
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
                         children: [
-                          const Text(
-                            '0',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400
-                            ),
-                          ),
-                          const SizedBox(width: 10),
                           Expanded(
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                SliderTheme(
-                                    data: SliderThemeData(
-                                        thumbShape: SliderComponentShape.noOverlay,
-                                        overlayShape: SliderComponentShape.noOverlay,
-                                        valueIndicatorColor: const Color(0xFFDF9E28),
-                                        valueIndicatorTextStyle: const TextStyle(
-                                          color: Colors.white
-                                        ),
-                                        activeTickMarkColor: Colors.transparent,
-                                        inactiveTickMarkColor: Colors.transparent,
-                                        trackHeight: 25,
-                                        trackShape: const RectangularSliderTrackShape()
+                              child: Stack(
+                                  alignment: Alignment.centerLeft,
+                                  children: [
+                                    Row(
+                                        children: [
+                                          if (isHalfStar)
+                                            for (int i = 0; i < 5; i++)
+                                              if (i < rateInt)
+                                                Container(
+                                                    padding: const EdgeInsets.only(right: 5),
+                                                    width: 45,
+                                                    height: 40,
+                                                    child: SvgPicture.asset("assets/icons/star_filled_icon.svg")
+                                                )
+                                              else if (i == rateInt)
+                                                Container(
+                                                    padding: const EdgeInsets.only(right: 5),
+                                                    width: 45,
+                                                    height: 40,
+                                                    child: SvgPicture.asset("assets/icons/star_half_icon.svg")
+                                                )
+                                              else
+                                                Container(
+                                                    padding: const EdgeInsets.only(right: 5),
+                                                    width: 45,
+                                                    height: 40,
+                                                    child: SvgPicture.asset("assets/icons/star_filled_icon.svg", color: const Color(0xFFDCDCDC))
+                                                )
+                                          else
+                                            for (int i = 0; i < 5; i++)
+                                              if (i < rateInt)
+                                                Container(
+                                                    padding: const EdgeInsets.only(right: 5),
+                                                    width: 45,
+                                                    height: 40,
+                                                    child: SvgPicture.asset("assets/icons/star_filled_icon.svg")
+                                                )
+                                              else
+                                                Container(
+                                                    padding: const EdgeInsets.only(right: 5),
+                                                    width: 45,
+                                                    height: 40,
+                                                    child: SvgPicture.asset("assets/icons/star_filled_icon.svg", color: const Color(0xFFDCDCDC))
+                                                ),
+                                          const SizedBox(width: 10),
+                                          Text(
+                                              "${_rateValue.toStringAsFixed(1)} / 5.0",
+                                              style: const TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w400
+                                              )
+                                          )
+                                        ]
                                     ),
-                                    child: Slider(
-                                        value: _rateValue,
-                                        min: 0.0,
-                                        max: 5.0,
-                                        divisions: 50,
-                                        activeColor: const Color(0xFFDF9E28),
-                                        inactiveColor: const Color(0xFF898989),
-                                        label: _rateValue.toStringAsFixed(1),
-                                        onChanged: (double val) {
-                                          setState(() {
-                                            _rateValue = val;
-                                          });
-                                        }
+                                    SizedBox(
+                                      width: 225,
+                                      child: SliderTheme(
+                                          data: SliderThemeData(
+                                              thumbShape: SliderComponentShape.noOverlay,
+                                              overlayShape: SliderComponentShape.noOverlay,
+                                              valueIndicatorColor: const Color(0xFFDF9E28),
+                                              valueIndicatorTextStyle: const TextStyle(
+                                                  color: Colors.white
+                                              ),
+                                              activeTickMarkColor: Colors.transparent,
+                                              inactiveTickMarkColor: Colors.transparent,
+                                              trackHeight: 35,
+                                              trackShape: const RectangularSliderTrackShape()
+                                          ),
+                                          child: Slider(
+                                              value: _rateValue,
+                                              min: 0.0,
+                                              max: 5.0,
+                                              divisions: 50,
+                                              activeColor: Colors.transparent,
+                                              inactiveColor: Colors.transparent,
+                                              label: _rateValue.toStringAsFixed(1),
+                                              onChanged: (double val) {
+                                                setState(() {
+                                                  _rateValue = val;
+                                                });
+                                              }
+                                          )
+                                      )
                                     )
-                                ),
-                                Center(
-                                  child: Text(
-                                    _rateValue.toStringAsFixed(1),
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white
-                                    ),
-                                  )
-                                )
-                              ]
-                            )
-                          ),
-                          const SizedBox(width: 10),
-                          const Text(
-                            '5',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w400
-                            ),
+                                  ]
+                              )
                           )
                         ]
-                      ),
-                      const SizedBox(height: 25),
-                      const SizedBox(
-                          width: double.infinity,
-                          child: Text(
-                            '사진 추가',
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500
-                            ),
-                          )
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
+                    ),
+                    const SizedBox(height: 25),
+                    const SizedBox(
+                        width: double.infinity,
+                        child: Text(
+                          '사진 추가',
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500
+                          ),
+                        )
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
                         children: [
                           _imageFile == null
-                          ? GestureDetector(
-                            onTap: () {
-                              _selectImg(context);
-                            },
-                            child: Container(
-                                width: 100,
-                                height: 100,
-                                padding: const EdgeInsets.all(20),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                          color: Color.fromRGBO(0, 0, 0, 0.5),
-                                          offset: Offset(0.0, 1.0),
-                                          blurRadius: 4.0,
-                                          spreadRadius: 0.0
-                                      )
-                                    ]
-                                ),
-                                child: SizedBox(
-                                    width: 60,
-                                    height: 60,
-                                    child: SvgPicture.asset("assets/icons/add_icon.svg")
-                                )
-                            )
+                              ? GestureDetector(
+                              onTap: () {
+                                _selectImg(context);
+                              },
+                              child: Container(
+                                  width: 100,
+                                  height: 100,
+                                  padding: const EdgeInsets.all(20),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(8),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                            color: Color.fromRGBO(0, 0, 0, 0.5),
+                                            offset: Offset(0.0, 1.0),
+                                            blurRadius: 4.0,
+                                            spreadRadius: 0.0
+                                        )
+                                      ]
+                                  ),
+                                  child: SizedBox(
+                                      width: 60,
+                                      height: 60,
+                                      child: SvgPicture.asset("assets/icons/add_icon.svg")
+                                  )
+                              )
                           )
-                          : Container(
+                              : Container(
                               width: 100,
                               height: 100,
                               decoration: const BoxDecoration(
@@ -314,25 +360,25 @@ class _WriteReviewState extends State<WriteReview> {
                               child: Image.file(_imageFile!)
                           )
                         ]
-                      ),
-                      const SizedBox(height: 25),
-                      const SizedBox(
-                          width: double.infinity,
-                          child: Text(
-                            '본문 추가',
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500
-                            ),
-                          )
-                      ),
-                      const SizedBox(height: 10),
-                      Container(
+                    ),
+                    const SizedBox(height: 25),
+                    const SizedBox(
+                        width: double.infinity,
+                        child: Text(
+                          '본문 추가',
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500
+                          ),
+                        )
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
                         height: 165,
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black),
-                          borderRadius: BorderRadius.circular(8)
+                            color: const Color(0xFFEEEEEE),
+                            borderRadius: BorderRadius.circular(8)
                         ),
                         child: Stack(
                             children: [
@@ -341,11 +387,11 @@ class _WriteReviewState extends State<WriteReview> {
                                 maxLines: null,
                                 keyboardType: TextInputType.multiline,
                                 decoration: const InputDecoration(
-                                  hintText: '어떤 경험이었나요?',
-                                  hintStyle: TextStyle(
-                                    color: Color(0xFF898989)
-                                  ),
-                                  border: InputBorder.none
+                                    hintText: '어떤 경험이었나요?',
+                                    hintStyle: TextStyle(
+                                        color: Color(0xFF898989)
+                                    ),
+                                    border: InputBorder.none
                                 ),
                                 onChanged: (val) {
                                   setState(() {
@@ -359,54 +405,55 @@ class _WriteReviewState extends State<WriteReview> {
                                 },
                               ),
                               Positioned(
-                                bottom: 10,
-                                right: 10,
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                    color: Colors.white
-                                  ),
-                                  child: Text(
-                                    "${_reviewTxt.length} / 150",
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xFF898989)
-                                    ),
+                                  bottom: 10,
+                                  right: 10,
+                                  child: Container(
+                                      decoration: const BoxDecoration(
+                                          color: Color(0xFFEEEEEE)
+                                      ),
+                                      child: Text(
+                                        "${_reviewTxt.length} / 150",
+                                        style: const TextStyle(
+                                            fontSize: 14,
+                                            color: Color(0xFF898989)
+                                        ),
+                                      )
                                   )
-                                )
                               )
                             ]
                         )
-                      ),
-                      const SizedBox(height: 25),
-                      SizedBox(
+                    ),
+                    const SizedBox(height: 25),
+                    SizedBox(
                         width: double.infinity,
                         height: 30,
                         child: TextButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors.black),
-                            shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)
-                              )
-                            )
-                          ),
-                          child: const Text(
-                            '등록',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.white
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(Colors.black),
+                                shape: MaterialStateProperty.all(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8)
+                                    )
+                                )
                             ),
-                          ),
-                          onPressed: () {
-                            print(
-                              "name: $_resName\nrate: ${_rateValue.toStringAsFixed(1)}\nimage: ${_imageFile.toString()}\ntext: $_reviewTxt"
-                            );
-                          }
+                            child: const Text(
+                              '등록',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.white
+                              ),
+                            ),
+                            onPressed: () {
+                              print(
+                                  "name: $_resName\nrate: ${_rateValue.toStringAsFixed(1)}\nimage: ${_imageFile.toString()}\ntext: $_reviewTxt"
+                              );
+                            }
                         )
-                      )
-                    ]
-                )
+                    )
+                  ]
+              )
+          )
         )
     );
   }

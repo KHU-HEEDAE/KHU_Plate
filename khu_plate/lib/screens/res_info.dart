@@ -49,10 +49,8 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    bool isHalfStar;
     String tenth = widget.rate.split('.')[1];
-
-    tenth != '0' ? isHalfStar = true : isHalfStar = false;
+    bool isHalfStar = tenth != '0';
 
     double starRate = double.parse(widget.rate);
     int rateInt = starRate.toInt();
