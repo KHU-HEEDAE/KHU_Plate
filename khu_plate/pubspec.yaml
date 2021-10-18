@@ -35,6 +35,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^0.22.0
   image_picker:
+  http:
+  url_launcher:
 
 dev_dependencies:
   flutter_test:
@@ -72,7 +74,6 @@ flutter:
     - assets/icons/move_right_arrow_icon.svg
     - assets/icons/star_filled_icon.svg
     - assets/icons/star_half_icon.svg
-    - assets/icons/avatar_icon.svg
     - assets/icons/add_icon.svg
     - assets/icons/avatar_icon.png
     - assets/banner_images/food1.png
@@ -80,6 +81,7 @@ flutter:
     - assets/banner_images/food3.png
     - assets/banner_images/food4.png
     - assets/banner_images/food5.png
+    - assets/banner_images/default.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

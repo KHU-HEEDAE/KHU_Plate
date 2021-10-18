@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:khu_plate/model/food.dart';
 import 'package:khu_plate/navigation.dart';
 import 'package:khu_plate/screens/res_info.dart';
+import 'package:khu_plate/screens/write_review_popup.dart';
 import 'res_info_screen_arguments.dart';
+import 'write_review_screen_arguments.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -14,10 +17,34 @@ class RouteGenerator {
 
           return MaterialPageRoute(
               builder: (_) => ResInfo(
-                img: args.img,
+                id: args.id,
+                imgPath: args.imgPath,
                 name: args.name,
                 rate: args.rate,
-                numReview: args.numReview
+                address: args.address,
+                tel: args.tel,
+                reviewCount: args.reviewCount
+              )
+          );
+        }
+        return _errRoute();
+      case '/write-review':
+        if (settings.arguments is Object) {
+          final args = settings.arguments as WriteReviewScreenArguments;
+
+          Food food = Food(
+              id: args.id,
+              name: args.name,
+              address: args.address,
+              tel: args.tel,
+              reviewCount: args.reviewCount,
+              rate: args.rate,
+              imgPath: args.imgPath
+          );
+
+          return MaterialPageRoute(
+              builder: (_) => WriteReviewPopup(
+                food: food
               )
           );
         }

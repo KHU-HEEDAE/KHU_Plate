@@ -3,27 +3,31 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:khu_plate/components/res_reviews.dart';
+import 'package:khu_plate/modules/write_review_screen_arguments.dart';
+import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 
 class ResInfo extends StatefulWidget {
-  const ResInfo({Key? key, required this.img, required this.name, required this.rate, required this.numReview}) : super(key: key);
+  const ResInfo({Key? key, required this.id, required this.imgPath, required this.name, required this.rate, required this.address, required this.tel, required this.reviewCount}) : super(key: key);
 
   @override
   _ResInfoState createState() => _ResInfoState();
 
-  final String img;
+  final int id;
+  final String imgPath;
   final String name;
-  final String rate;
-  final String numReview;
+  final double rate;
+  final String address;
+  final String tel;
+  final int reviewCount;
 }
 
 class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
   @override
   @mustCallSuper
   void initState() {
-    super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       _scrollController.addListener(() {
-        _scrollController.offset < 150.0
+        _scrollController.offset < 125.0
             ? setState(() {
                 txtColor = Colors.black;
                 btnColor = const Color(0xFF898989);
@@ -34,6 +38,7 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
               });
       });
     });
+    super.initState();
   }
 
   @override
@@ -49,11 +54,21 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    String tenth = widget.rate.split('.')[1];
+    String tenth = widget.rate.toStringAsFixed(1).split('.')[1];
     bool isHalfStar = tenth != '0';
 
-    double starRate = double.parse(widget.rate);
+    double starRate = widget.rate;
     int rateInt = starRate.toInt();
+
+    String _tel = '';
+
+    if (widget.tel.length == 11) {
+      _tel = widget.tel.substring(0, 3) + '-' + widget.tel.substring(3, 7) + '-' + widget.tel.substring(7);
+    } else if (widget.tel.length == 10) {
+      _tel = widget.tel.substring(0, 3) + '-' + widget.tel.substring(3, 6) + '-' + widget.tel.substring(6);
+    } else {
+      _tel = widget.tel;
+    }
 
     return Scaffold(
         body: SizedBox(
@@ -69,7 +84,7 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
                                 height: 240,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
-                                        image: AssetImage(widget.img),
+                                        image: AssetImage(widget.imgPath),
                                         fit: BoxFit.cover
                                     )
                                 )
@@ -200,7 +215,7 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
                                                             ),
                                                       const SizedBox(width: 10),
                                                       Text(
-                                                          widget.rate,
+                                                          widget.rate.toStringAsFixed(1),
                                                           style: const TextStyle(
                                                               fontSize: 16,
                                                               fontWeight: FontWeight.w300,
@@ -211,10 +226,10 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
                                                 ),
                                                 const SizedBox(height: 20),
                                                 Row(
-                                                    children: const [
+                                                    children: [
                                                       Text(
-                                                          "주소: 수원시 영통구 희대로",
-                                                          style: TextStyle(
+                                                          widget.address,
+                                                          style: const TextStyle(
                                                               fontSize: 12,
                                                               fontWeight: FontWeight.w400,
                                                               color: Color(0xFF898989)
@@ -224,27 +239,19 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
                                                 ),
                                                 const SizedBox(height: 10),
                                                 Row(
-                                                    children: const [
-                                                      Text(
-                                                          "전화번호: 000-0000-0000",
-                                                          style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontWeight: FontWeight.w400,
-                                                              color: Color(0xFF898989)
-                                                          )
-                                                      )
-                                                    ]
-                                                ),
-                                                const SizedBox(height: 10),
-                                                Row(
-                                                    children: const [
-                                                      Text(
-                                                          "영업시간: 월 ~ 일 10 A.M. ~ 9 P.M.",
-                                                          style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontWeight: FontWeight.w400,
-                                                              color: Color(0xFF898989)
-                                                          )
+                                                    children: [
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          UrlLauncher.launch("tel://${widget.tel}");
+                                                        },
+                                                        child: Text(
+                                                            _tel,
+                                                            style: const TextStyle(
+                                                                fontSize: 12,
+                                                                fontWeight: FontWeight.w400,
+                                                                color: Color(0xFF898989)
+                                                            )
+                                                        )
                                                       )
                                                     ]
                                                 )
@@ -267,7 +274,7 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
                                                 ),
                                                 const SizedBox(width: 5),
                                                 Text(
-                                                    "(" + widget.numReview + "개의 리뷰)",
+                                                    '(${widget.reviewCount.toString()}개의 리뷰)',
                                                     style: TextStyle(
                                                         fontSize: 12,
                                                         fontWeight: FontWeight.w400,
@@ -284,7 +291,18 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
                                                     height: 18,
                                                     child: TextButton(
                                                         onPressed: () {
-                                                          print("offset = ${_scrollController.offset}");
+                                                          Navigator.of(context).pushNamed(
+                                                            '/write-review',
+                                                            arguments: WriteReviewScreenArguments(
+                                                                widget.id,
+                                                                widget.imgPath,
+                                                                widget.name,
+                                                                widget.rate,
+                                                                widget.address,
+                                                                widget.tel,
+                                                                widget.reviewCount
+                                                            )
+                                                          );
                                                         },
                                                         style: TextButton.styleFrom(
                                                             padding: EdgeInsets.zero
@@ -316,7 +334,7 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
                                           )
                                       ),
                                       const SizedBox(height: 10),
-                                      ResReviews(data: widget.name)
+                                      ResReviews(foodId: widget.id)
                                     ]
                                 )
                             )

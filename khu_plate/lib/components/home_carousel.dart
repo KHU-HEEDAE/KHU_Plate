@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_svg/svg.dart';
+// http api
+import 'package:khu_plate/model/app_banner.dart';
+import '../api/app_banner_api.dart';
 
 class Carousel extends StatefulWidget {
   const Carousel({Key? key}) : super(key: key);
@@ -16,7 +19,7 @@ class _CarouselState extends State<Carousel> {
   void initState() {
     super.initState();
 
-    resData = _getData();
+    resData = _getBanners();
 
     _timer = Timer.periodic(const Duration(seconds: 5), (Timer timer) {
       _pageController.animateToPage(
@@ -40,35 +43,11 @@ class _CarouselState extends State<Carousel> {
 
   final PageController _pageController = PageController();
 
-  Future<Map<String, List<String>>> _getData() async {
-    await Future.delayed(const Duration(seconds: 2));
-
-    return {
-      "imgList": [
-        "assets/banner_images/food1.png",
-        "assets/banner_images/food2.png",
-        "assets/banner_images/food3.png",
-        "assets/banner_images/food4.png",
-        "assets/banner_images/food5.png"
-      ],
-      "txtList1": [
-        "당신에게 추천하는 고깃집!",
-        "당신에게 추천하는 스시집!",
-        "당신에게 추천하는 파스타집!",
-        "당신에게 추천하는 중식집!",
-        "당신에게 추천하는 백반집!"
-      ],
-      "txtList2": [
-        "고기 맛집 보러 가기",
-        "스시 맛집 보러 가기",
-        "파스타 맛집 보러 가기",
-        "중식 맛집 보러 가기",
-        "한식 맛집 보러 가기"
-      ]
-    };
+  Future<List<AppBanner>> _getBanners() async {
+    return await BannerApi.getBanners();
   }
 
-  Future<Map<String, List<String>>>? resData;
+  Future<List<AppBanner>>? resData;
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +62,7 @@ class _CarouselState extends State<Carousel> {
                 children: [
                   FutureBuilder(
                       future: resData,
-                      builder: (context, AsyncSnapshot<Map<String, List<String>>> snapshot) {
+                      builder: (context, AsyncSnapshot<List<AppBanner>> snapshot) {
                         Widget child = const SizedBox();
 
                         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -98,13 +77,13 @@ class _CarouselState extends State<Carousel> {
                           );
                         } else if (snapshot.connectionState == ConnectionState.done) {
                           if (snapshot.hasData) {
-                            for (var i = 0; i < snapshot.data!["imgList"]!.length; i++) {
+                            for (var i = 0; i < snapshot.data!.length; i++) {
                               _pageViewChildren.add(
                                   Container(
                                       height: 240,
                                       decoration: BoxDecoration(
                                           image: DecorationImage(
-                                              image: AssetImage(snapshot.data!["imgList"]![i]),
+                                              image: AssetImage(snapshot.data![i].imgPath),
                                               fit: BoxFit.cover)
                                       ),
                                       child: Stack(
@@ -124,7 +103,7 @@ class _CarouselState extends State<Carousel> {
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
                                                   Text(
-                                                    snapshot.data!["txtList1"]![i],
+                                                    snapshot.data![i].txt1,
                                                     style: const TextStyle(
                                                         fontWeight: FontWeight.w500,
                                                         fontSize: 24,
@@ -137,7 +116,7 @@ class _CarouselState extends State<Carousel> {
                                                     mainAxisSize: MainAxisSize.min,
                                                     children: [
                                                       Text(
-                                                        snapshot.data!["txtList2"]![i],
+                                                        snapshot.data![i].txt2,
                                                         style: const TextStyle(
                                                             fontSize: 16,
                                                             color: Colors.white
@@ -183,7 +162,7 @@ class _CarouselState extends State<Carousel> {
                   ),
                   FutureBuilder(
                       future: resData,
-                      builder: (context, AsyncSnapshot<Map<String, List<String>>> snapshot) {
+                      builder: (context, AsyncSnapshot<List<AppBanner>> snapshot) {
                         Widget child = const SizedBox();
 
                         if(snapshot.hasData) {
@@ -191,13 +170,13 @@ class _CarouselState extends State<Carousel> {
                               bottom: 10,
                               child: Row(
                                   children: [
-                                    for (var i = 0; i < snapshot.data!["imgList"]!.length; i++)
+                                    for (var i = 0; i < snapshot.data!.length; i++)
                                       Container(
                                           padding: const EdgeInsets.only(left: 5, right: 5),
                                           child: SizedBox(
                                               height: 6,
-                                              width: (_currentBanner % snapshot.data!["imgList"]!.length == i ? 25 : 6),
-                                              child: (_currentBanner % snapshot.data!["imgList"]!.length == i
+                                              width: (_currentBanner % snapshot.data!.length == i ? 25 : 6),
+                                              child: (_currentBanner % snapshot.data!.length == i
                                                   ? SizedBox(
                                                 width: 25,
                                                 height: 6,

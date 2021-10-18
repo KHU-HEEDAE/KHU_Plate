@@ -3,29 +3,38 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import '../components/search_bar.dart';
+import '../model/food.dart';
 
 class WriteReview extends StatefulWidget {
-  const WriteReview({Key? key, this.resNamePara = ''}) : super(key: key);
+  const WriteReview({Key? key, this.food}) : super(key: key);
 
-  final String resNamePara;
+  final Food? food;
 
   @override
   _WriteReviewState createState() => _WriteReviewState();
+
+  static _WriteReviewState? of(BuildContext context) =>
+      context.findAncestorStateOfType<_WriteReviewState>();
 }
 
 class _WriteReviewState extends State<WriteReview> {
   @override
   void initState () {
+    if (widget.food != null) {
+      _food = widget.food!;
+    }
     super.initState();
-    _resName = widget.resNamePara;
   }
 
-  String _resName = '';
+  Food? _food;
+
+  set food(Food obj) => setState(() => _food = obj);
+
   double _rateValue = 0;
   File? _imageFile;
   String _reviewTxt = '';
 
-  final _resNameController = TextEditingController();
   final _reviewTxtController = TextEditingController();
 
   Future<void> _selectImg(BuildContext context) {
@@ -99,56 +108,34 @@ class _WriteReviewState extends State<WriteReview> {
                         )
                     ),
                     const SizedBox(height: 10),
-                    SizedBox(
-                        height: 40,
-                        child: TextField(
-                          controller: _resNameController,
-                          textInputAction: TextInputAction.done,
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-                              filled: true,
-                              fillColor: const Color(0xFFEEEEEE),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                                borderSide: const BorderSide(color: Colors.transparent),
+                    SearchBar(page: 'writeReviewPage', callback: (obj) => setState(() => _food = obj)),
+                    if (_food != null)
+                      Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(8),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Color.fromRGBO(0, 0, 0, 0.5),
+                                    offset: Offset(0.0, 2.0),
+                                    blurRadius: 2.0,
+                                    spreadRadius: 0.0
+                                )
+                              ]
+                            ),
+                            child: ListTile(
+                              leading: Image.asset(
+                                  _food!.imgPath,
+                                  width: 50,
+                                  height: 50,
                               ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                                borderSide: const BorderSide(color: Colors.transparent),
-                              ),
-                              label: const Text(
-                                  '음식점 이름',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.black
-                                  )
-                              ),
-                              suffixIcon: SizedBox(
-                                  width: 20,
-                                  height: 20,
-                                  child: IconButton(
-                                      icon: SvgPicture.asset(
-                                          "assets/icons/search_icon.svg",
-                                          width: 20,
-                                          height: 20,
-                                          color: Colors.black
-                                      ),
-                                      onPressed: () {  }
-                                  )
-                              )
-                          ),
-                          onChanged: (val) {
-                            setState(() {
-                              _resName = _resNameController.text;
-                            });
-                          },
-                          onSubmitted: (val) {
-                            setState(() {
-                              _resName = _resNameController.text;
-                            });
-                          },
-                        )
-                    ),
+                              title: Text(_food!.name),
+                              subtitle: Text(_food!.rate.toStringAsFixed(1)),
+                            )
+                          )
+                      ),
                     const SizedBox(height: 25),
                     const SizedBox(
                         width: double.infinity,
@@ -445,9 +432,13 @@ class _WriteReviewState extends State<WriteReview> {
                               ),
                             ),
                             onPressed: () {
-                              print(
-                                  "name: $_resName\nrate: ${_rateValue.toStringAsFixed(1)}\nimage: ${_imageFile.toString()}\ntext: $_reviewTxt"
-                              );
+                              if (_food != null) {
+                                print(
+                                    "name: ${_food!.name}\nrate: ${_rateValue.toStringAsFixed(1)}\nimage: ${_imageFile.toString()}\ntext: $_reviewTxt"
+                                );
+                              } else {
+                                print("choose a restaurant");
+                              }
                             }
                         )
                     )

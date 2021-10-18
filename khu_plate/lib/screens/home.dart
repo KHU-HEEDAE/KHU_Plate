@@ -4,6 +4,9 @@ import 'package:flutter_svg/svg.dart';
 import '../components/home_carousel.dart';
 import '../components/search_bar.dart';
 import '../modules/res_info_screen_arguments.dart';
+// for http api
+import 'package:khu_plate/model/food.dart';
+import '../api/food_api.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -14,58 +17,18 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   @override
-  void initState() {
-    super.initState();
-
-    resData = _getData();
-  }
-
-  @override
   void dispose() {
     _categoryController.dispose();
     _orderController.dispose();
     super.dispose();
   }
 
-  Future<Map<String, List<String>>> _getData() async {
-    await Future.delayed(const Duration(seconds: 2));
-
-    return {
-      "imgList": [
-        "assets/banner_images/food1.png",
-        "assets/banner_images/food2.png",
-        "assets/banner_images/food3.png",
-        "assets/banner_images/food4.png",
-        "assets/banner_images/food5.png"
-      ],
-      "nameList": [
-        "영통 왕갈비",
-        "영통 스시",
-        "영통 파스타",
-        "영통 반점",
-        "영통 백반"
-      ],
-      "rateList": [
-        "4.3",
-        "4.0",
-        "3.9",
-        "4.1",
-        "4.2"
-      ],
-      "numReviewList": [
-        "25",
-        "22",
-        "20",
-        "30",
-        "24"
-      ]
-    };
+  Future<List<Food>> _getFoods() async {
+    return await FoodApi.getFoods('');
   }
 
-  Future<Map<String, List<String>>>? resData;
-
   final _thumbWheels = ["카테고리", "기준"];
-  final _categoryList = ["아무거나", "한식", "일식", "중식", "양식"];
+  final _categoryList = ["아무거나", "한식", "일식", "중식", "양식", "고기/구이"];
   final _orderList = ["최신순", "평점순", "리뷰순"];
 
   int _curCategoryIdx = 0;
@@ -88,7 +51,7 @@ class _HomeState extends State<Home> {
               Stack(
                   children: const [
                       Carousel(),
-                      SearchBar()
+                      SearchBar(page: 'mainPage')
                   ]
               ),
               Center(
@@ -328,8 +291,8 @@ class _HomeState extends State<Home> {
                                   padding: const EdgeInsets.only(left: 10, right: 20),
                                   scrollDirection: Axis.horizontal,
                                   child: FutureBuilder(
-                                      future: resData,
-                                      builder: (context, AsyncSnapshot<Map<String, List<String>>> snapshot) {
+                                      future: _getFoods(),
+                                      builder: (context, AsyncSnapshot<List<Food>> snapshot) {
                                           Widget child = const SizedBox();
 
                                           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -376,7 +339,7 @@ class _HomeState extends State<Home> {
                                                       crossAxisAlignment: CrossAxisAlignment.start,
                                                       mainAxisAlignment: MainAxisAlignment.start,
                                                       children: [
-                                                          for (var i = 0; i < snapshot.data!["imgList"]!.length; i++)
+                                                          for (var i = 0; i < snapshot.data!.length; i++)
                                                               Padding(
                                                                   padding: const EdgeInsets.only(left: 10, bottom: 5),
                                                                   child: GestureDetector(
@@ -384,10 +347,13 @@ class _HomeState extends State<Home> {
                                                                           Navigator.of(context).pushNamed(
                                                                               '/res-info',
                                                                               arguments: ResInfoScreenArguments(
-                                                                                  snapshot.data!["imgList"]![i],
-                                                                                  snapshot.data!["nameList"]![i],
-                                                                                  snapshot.data!["rateList"]![i],
-                                                                                  snapshot.data!["numReviewList"]![i]
+                                                                                  snapshot.data![i].id,
+                                                                                  snapshot.data![i].imgPath,
+                                                                                  snapshot.data![i].name,
+                                                                                  snapshot.data![i].rate,
+                                                                                  snapshot.data![i].address,
+                                                                                  snapshot.data![i].tel,
+                                                                                  snapshot.data![i].reviewCount
                                                                               )
                                                                           );
                                                                       },
@@ -414,7 +380,7 @@ class _HomeState extends State<Home> {
                                                                                   decoration: BoxDecoration(
                                                                                       borderRadius: BorderRadius.circular(8),
                                                                                       image: DecorationImage(
-                                                                                          image: AssetImage(snapshot.data!["imgList"]![i]),
+                                                                                          image: AssetImage(snapshot.data![i].imgPath),
                                                                                           fit: BoxFit.cover
                                                                                       )
                                                                                   ),
@@ -426,7 +392,7 @@ class _HomeState extends State<Home> {
                                                                                           SizedBox(
                                                                                               width: double.infinity,
                                                                                               child: Text(
-                                                                                                snapshot.data!["nameList"]![i],
+                                                                                                snapshot.data![i].name,
                                                                                                 style: const TextStyle(
                                                                                                     fontWeight: FontWeight.w700,
                                                                                                     fontSize: 12),
@@ -444,14 +410,14 @@ class _HomeState extends State<Home> {
                                                                                                     ),
                                                                                                     const SizedBox(width: 2),
                                                                                                     Text(
-                                                                                                      snapshot.data!["rateList"]![i],
+                                                                                                      '${snapshot.data![i].rate}',
                                                                                                       style: const TextStyle(
                                                                                                           fontSize: 10
                                                                                                       ),
                                                                                                     ),
                                                                                                     const SizedBox(width: 5),
                                                                                                     Text(
-                                                                                                        "(" + snapshot.data!["numReviewList"]![i] + "개 리뷰)",
+                                                                                                        '(${snapshot.data![i].reviewCount}개의 리뷰)',
                                                                                                         style: const TextStyle(
                                                                                                             color: Color(0xFF898989),
                                                                                                             fontSize: 10)
@@ -470,10 +436,12 @@ class _HomeState extends State<Home> {
                                                       ]
                                                   );
                                               } else if (snapshot.hasError) {
-                                                  child = const Text('error');
+                                                  child = Text('data: ${snapshot.data},\nerror: ${snapshot.error}');
+                                              } else {
+                                                  child = const Text('connection error');
                                               }
                                           } else {
-                                              child = const Text('error');
+                                              child = const Text('connection error');
                                           }
 
                                           return child;
