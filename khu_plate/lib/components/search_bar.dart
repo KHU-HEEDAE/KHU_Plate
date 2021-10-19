@@ -80,7 +80,7 @@ class _SearchBarState extends State<SearchBar> {
 
     return OverlayEntry(
         builder: (context) => Positioned(
-            width: size.width,
+            width: widget.page == 'mainPage' ? size.width - 45 : size.width,
             child: CompositedTransformFollower(
               link: _layerLink,
               showWhenUnlinked: false,
@@ -94,9 +94,10 @@ class _SearchBarState extends State<SearchBar> {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {
+                            print('index: $index');
                             if (widget.page == 'mainPage') {
                               Navigator.of(context).pushNamed(
-                                  'res-info',
+                                  '/res-info',
                                   arguments: ResInfoScreenArguments(
                                       _foods[index].id,
                                       _foods[index].imgPath,

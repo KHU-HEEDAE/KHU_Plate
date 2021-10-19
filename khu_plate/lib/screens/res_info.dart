@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:khu_plate/components/res_reviews.dart';
 import 'package:khu_plate/modules/write_review_screen_arguments.dart';
-import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
+import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 class ResInfo extends StatefulWidget {
   const ResInfo({Key? key, required this.id, required this.imgPath, required this.name, required this.rate, required this.address, required this.tel, required this.reviewCount}) : super(key: key);
@@ -242,7 +242,7 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
                                                     children: [
                                                       GestureDetector(
                                                         onTap: () {
-                                                          UrlLauncher.launch("tel://${widget.tel}");
+                                                          url_launcher.launch("tel://${widget.tel}");
                                                         },
                                                         child: Text(
                                                             _tel,
