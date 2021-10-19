@@ -4,7 +4,15 @@
 2.5.2
 ```
 
-### Compile and Debug on Chrome:
+### Dependecies:
 ```
-flutter run -d chrome
+install node.js
+npm install express
+npm install morgan
+npm install nodemon
+```
+
+### Run server:
+```
+nodemon app.js
 ```
