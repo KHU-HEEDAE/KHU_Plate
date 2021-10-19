@@ -1,9 +1,4 @@
 # KHU_Plate
-### Flutter Version:
-```
-2.5.2
-```
-
 ### Dependecies:
 ```
 install node.js
