@@ -1,4 +1,4 @@
-# KHU_Plate
+# Test Req
 ### Dependecies:
 ```
 install node.js
