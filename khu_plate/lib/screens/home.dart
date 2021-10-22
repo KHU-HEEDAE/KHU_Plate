@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
     super.dispose();
   }
 
-  Future<List<Food>> _getFoods() async {
+  Future<List<Foods>> _getFoods() async {
     return await FoodApi.getFoods('');
   }
 
@@ -292,8 +292,8 @@ class _HomeState extends State<Home> {
                                   scrollDirection: Axis.horizontal,
                                   child: FutureBuilder(
                                       future: _getFoods(),
-                                      builder: (context, AsyncSnapshot<List<Food>> snapshot) {
-                                          Widget child = const SizedBox();
+                                      builder: (context, AsyncSnapshot<List<Foods>> snapshot) {
+                                          Widget child;
 
                                           if (snapshot.connectionState == ConnectionState.waiting) {
                                               child = SizedBox(
@@ -347,13 +347,7 @@ class _HomeState extends State<Home> {
                                                                           Navigator.of(context).pushNamed(
                                                                               '/res-info',
                                                                               arguments: ResInfoScreenArguments(
-                                                                                  snapshot.data![i].id,
-                                                                                  snapshot.data![i].imgPath,
-                                                                                  snapshot.data![i].name,
-                                                                                  snapshot.data![i].rate,
-                                                                                  snapshot.data![i].address,
-                                                                                  snapshot.data![i].tel,
-                                                                                  snapshot.data![i].reviewCount
+                                                                                  snapshot.data![i].id
                                                                               )
                                                                           );
                                                                       },

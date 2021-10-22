@@ -6,29 +6,19 @@ import 'package:khu_plate/model/review.dart';
 import '../api/review_api.dart';
 
 class ResReviews extends StatefulWidget {
-  const ResReviews({Key? key, required this.foodId}) : super(key: key);
+  const ResReviews({Key? key, required this.reviews}) : super(key: key);
 
   @override
   _ResReviewsState createState() => _ResReviewsState();
 
-  final int foodId;
+  final List<Review> reviews;
 }
 
 class _ResReviewsState extends State<ResReviews> {
-  Future<List<Review>> _getReviews(int id) async {
-    return await ReviewApi.getReviews(id);
-  }
-
-  Future<List<Review>>? _resData;
-
-  @override
-  void initState() {
-    super.initState();
-    _resData = _getReviews(widget.foodId);
-  }
-
   @override
   Widget build(BuildContext context) {
+    return const SizedBox();
+    /*
     return FutureBuilder(
               future: _resData,
               builder: (context, AsyncSnapshot<List<Review>> snapshot) {
@@ -205,5 +195,7 @@ class _ResReviewsState extends State<ResReviews> {
                 return child;
               }
     );
+
+     */
   }
 }

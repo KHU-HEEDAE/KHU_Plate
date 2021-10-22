@@ -6,7 +6,7 @@ import 'write_review.dart';
 class WriteReviewPopup extends StatefulWidget {
   const WriteReviewPopup({Key? key, required this.food}) : super(key: key);
 
-  final Food food;
+  final Foods food;
 
   @override
   _WriteReviewPopupState createState() => _WriteReviewPopupState();
@@ -19,7 +19,7 @@ class _WriteReviewPopupState extends State<WriteReviewPopup> {
     super.initState();
   }
 
-  late Food _food;
+  late Foods _food;
 
   @override
   Widget build(BuildContext context) {

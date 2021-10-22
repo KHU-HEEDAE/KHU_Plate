@@ -13,7 +13,7 @@ class AppBanner {
 
   factory AppBanner.fromJson(Map<String, dynamic> json) => AppBanner(
       id: json['id'],
-      imgPath: json['img_path'] ??= "assets/banner_images/default.png",
+      imgPath: json['image'] ??= "assets/banner_images/default.png",
       txt1: json['txt1'] ??= '',
       txt2: json['txt2'] ??= '',
   );

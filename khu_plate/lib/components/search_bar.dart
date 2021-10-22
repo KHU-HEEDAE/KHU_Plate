@@ -6,7 +6,7 @@ import 'package:khu_plate/modules/res_info_screen_arguments.dart';
 import '../model/food.dart';
 import '../api/food_api.dart';
 
-typedef FoodCallback = void Function(Food obj);
+typedef FoodCallback = void Function(Foods obj);
 
 class SearchBar extends StatefulWidget {
   const SearchBar({Key? key, required this.page, this.callback}) : super(key: key);
@@ -21,6 +21,7 @@ class SearchBar extends StatefulWidget {
 class _SearchBarState extends State<SearchBar> {
   @override
   void initState() {
+    super.initState();
     _focusNode.addListener(() {
       if (_focusNode.hasFocus) {
         _overlayEntry = _createOverlayEntry();
@@ -30,7 +31,6 @@ class _SearchBarState extends State<SearchBar> {
       }
     });
     init();
-    super.initState();
   }
 
   @override
@@ -38,6 +38,10 @@ class _SearchBarState extends State<SearchBar> {
     _timer?.cancel();
     super.dispose();
   }
+
+  List<Foods> _foods = [];
+  String _query = '';
+  Timer? _timer;
 
   void debounce(VoidCallback callback, {
     Duration duration = const Duration(milliseconds: 500)
@@ -99,24 +103,16 @@ class _SearchBarState extends State<SearchBar> {
                               Navigator.of(context).pushNamed(
                                   '/res-info',
                                   arguments: ResInfoScreenArguments(
-                                      _foods[index].id,
-                                      _foods[index].imgPath,
-                                      _foods[index].name,
-                                      _foods[index].rate,
-                                      _foods[index].address,
-                                      _foods[index].tel,
-                                      _foods[index].reviewCount
+                                      _foods[index].id
                                   )
                               );
                             } else {
-                              Food food = Food(
+                              Foods food = Foods(
                                   id: _foods[index].id,
                                   imgPath: _foods[index].imgPath,
                                   name: _foods[index].name,
                                   rate: _foods[index].rate,
-                                  address: _foods[index].address,
-                                  tel: _foods[index].tel,
-                                  reviewCount: _foods[index].reviewCount,
+                                  reviewCount: _foods[index].reviewCount
                               );
                               if (widget.callback != null) {
                                 widget.callback!(food);
@@ -142,10 +138,6 @@ class _SearchBarState extends State<SearchBar> {
         )
     );
   }
-
-  List<Food> _foods = [];
-  String _query = '';
-  Timer? _timer;
 
   final _searchController = TextEditingController();
 

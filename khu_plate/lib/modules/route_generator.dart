@@ -17,13 +17,7 @@ class RouteGenerator {
 
           return MaterialPageRoute(
               builder: (_) => ResInfo(
-                id: args.id,
-                imgPath: args.imgPath,
-                name: args.name,
-                rate: args.rate,
-                address: args.address,
-                tel: args.tel,
-                reviewCount: args.reviewCount
+                id: args.id
               )
           );
         }
@@ -32,11 +26,9 @@ class RouteGenerator {
         if (settings.arguments is Object) {
           final args = settings.arguments as WriteReviewScreenArguments;
 
-          Food food = Food(
+          Foods food = Foods(
               id: args.id,
               name: args.name,
-              address: args.address,
-              tel: args.tel,
               reviewCount: args.reviewCount,
               rate: args.rate,
               imgPath: args.imgPath

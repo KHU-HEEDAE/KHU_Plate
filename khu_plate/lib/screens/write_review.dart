@@ -3,13 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import 'package:khu_plate/api/review_api.dart';
+import 'package:khu_plate/model/review.dart';
 import '../components/search_bar.dart';
 import '../model/food.dart';
 
 class WriteReview extends StatefulWidget {
   const WriteReview({Key? key, this.food}) : super(key: key);
 
-  final Food? food;
+  final Foods? food;
 
   @override
   _WriteReviewState createState() => _WriteReviewState();
@@ -27,11 +29,11 @@ class _WriteReviewState extends State<WriteReview> {
     super.initState();
   }
 
-  Food? _food;
+  Foods? _food;
 
-  set food(Food obj) => setState(() => _food = obj);
+  set food(Foods obj) => setState(() => _food = obj);
 
-  double _rateValue = 0;
+  double _rateValue = 0.0;
   File? _imageFile;
   String _reviewTxt = '';
 
@@ -45,6 +47,7 @@ class _WriteReviewState extends State<WriteReview> {
         ),
         content: SingleChildScrollView(
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextButton(
                   onPressed: () {
@@ -52,9 +55,7 @@ class _WriteReviewState extends State<WriteReview> {
                   },
                   child: const Text('갤러리')
               ),
-              const Expanded(
-                child: SizedBox()
-              ),
+              const SizedBox(width: 50),
               TextButton(
                   onPressed: () {
                     _openCamera(context);
@@ -84,6 +85,38 @@ class _WriteReviewState extends State<WriteReview> {
     Navigator.of(context).pop();
   }
 
+  Future<void> _alertWriter(BuildContext context, String info) {
+    return showDialog(context: context, builder: (BuildContext context) {
+      return AlertDialog(
+          title: Center(
+              child: Column(
+                children: [
+                  info == 'success'
+                  ? const Icon(
+                      Icons.check_circle,
+                      color: Colors.green,
+                      size: 70.0
+                  )
+                  : const Icon(
+                      Icons.warning,
+                      color: Colors.deepOrange,
+                      size: 70.0
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                      info == 'food' ? '음식점을 선택하세요!' : info == 'post' ? '연결 오류입니다.\n다시 시도해 주세요!' : '작성이 완료되었습니다!',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14
+                      )
+                  )
+                ]
+              )
+          )
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     String tenth = _rateValue.toStringAsFixed(1).split('.')[1];
@@ -97,14 +130,24 @@ class _WriteReviewState extends State<WriteReview> {
               padding: const EdgeInsets.all(20),
               child: Column(
                   children: [
-                    const SizedBox(
+                    SizedBox(
                         width: double.infinity,
-                        child: Text(
-                          '평가할 맛집 선택',
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500
-                          ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              '평가할 맛집 선택',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500
+                              )
+                            ),
+                            const SizedBox(width: 2),
+                            SizedBox(
+                              width: 4,
+                              child: SvgPicture.asset('assets/icons/must_icon.svg')
+                            )
+                          ]
                         )
                     ),
                     const SizedBox(height: 10),
@@ -184,14 +227,24 @@ class _WriteReviewState extends State<WriteReview> {
                         ]
                     ),
                     const SizedBox(height: 25),
-                    const SizedBox(
+                    SizedBox(
                         width: double.infinity,
-                        child: Text(
-                          '별점 주기',
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500
-                          ),
+                        child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                  '별점 주기',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500
+                                  )
+                              ),
+                              const SizedBox(width: 2),
+                              SizedBox(
+                                  width: 4,
+                                  child: SvgPicture.asset('assets/icons/must_icon.svg')
+                              )
+                            ]
                         )
                     ),
                     const SizedBox(height: 10),
@@ -431,13 +484,32 @@ class _WriteReviewState extends State<WriteReview> {
                                   color: Colors.white
                               ),
                             ),
-                            onPressed: () {
+                            onPressed: () async {
                               if (_food != null) {
-                                print(
-                                    "name: ${_food!.name}\nrate: ${_rateValue.toStringAsFixed(1)}\nimage: ${_imageFile.toString()}\ntext: $_reviewTxt"
-                                );
+                                try {
+                                  await ReviewApi.postReview(
+                                      ReviewPost(
+                                          foodId: _food!.id,
+                                          userId: 0,
+                                          rate: _rateValue,
+                                          content: _reviewTxt,
+                                          imgPath: _imageFile.toString()
+                                      )
+                                  );
+                                  setState(() {
+                                    _food = null;
+                                    _rateValue = 0.0;
+                                    _imageFile = null;
+                                    _reviewTxt = '';
+                                    _reviewTxtController.text = '';
+                                  });
+                                  _alertWriter(context, 'success');
+                                } catch(e) {
+                                  print(e);
+                                  _alertWriter(context, 'post');
+                                }
                               } else {
-                                print("choose a restaurant");
+                                _alertWriter(context, 'food');
                               }
                             }
                         )

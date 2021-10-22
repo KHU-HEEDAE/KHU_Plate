@@ -17,19 +17,34 @@ class Review {
 
   factory Review.fromJson(Map<String, dynamic> json) => Review(
       id: json['id'],
-      username: json['username'],
+      username: json['writer'],
       rate: json['rate'].toDouble(),
       content: json['content'] ??= "",
-      imgPath: json['img_path'] ??= "",
+      imgPath: json['image'] ??= "",
       avatarPath: json['avatar_path'] ??= "assets/icons/avatar_icon.png"
   );
+}
+
+class ReviewPost {
+  final int foodId;
+  final int userId;
+  final double rate;
+  final String? content;
+  final String? imgPath;
+
+  const ReviewPost({
+    required this.foodId,
+    required this.userId,
+    required this.rate,
+    this.content,
+    this.imgPath,
+  });
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'username': username,
+    'food_id': foodId,
+    'user_id': userId,
     'rate': rate,
     'content': content,
-    'img_path': imgPath,
-    'avatar_path': avatarPath
+    'image': imgPath
   };
 }
