@@ -98,8 +98,7 @@ class _SearchBarState extends State<SearchBar> {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {
-                            print('index: $index');
-                            if (widget.page == 'mainPage') {
+                            if (widget.page != 'writeReviewPage') {
                               Navigator.of(context).pushNamed(
                                   '/res-info',
                                   arguments: ResInfoScreenArguments(

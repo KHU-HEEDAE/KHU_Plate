@@ -377,7 +377,7 @@ class _HomeState extends State<Home> {
                                                                                           image: AssetImage(snapshot.data![i].imgPath),
                                                                                           fit: BoxFit.cover
                                                                                       )
-                                                                                  ),
+                                                                                  )
                                                                                 ),
                                                                                 Padding(
                                                                                     padding: const EdgeInsets.all(10),

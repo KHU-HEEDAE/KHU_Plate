@@ -37,6 +37,7 @@ dependencies:
   image_picker:
   http:
   url_launcher:
+  flutter_staggered_grid_view:
 
 dev_dependencies:
   flutter_test:
@@ -61,9 +62,13 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icons/home_icon.svg
+    - assets/icons/home_filled_icon.svg
     - assets/icons/more_icon.svg
     - assets/icons/review_feed_icon.svg
+    - assets/icons/review_feed_filled_icon.svg
+    - assets/icons/list_icon.svg
     - assets/icons/write_review_icon.svg
+    - assets/icons/write_review_filled_icon.svg
     - assets/icons/right_arrow_icon.svg
     - assets/icons/left_arrow_icon.svg
     - assets/icons/pagination_dash.svg

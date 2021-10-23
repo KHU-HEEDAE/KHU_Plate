@@ -3,9 +3,8 @@ import 'dart:convert';
 import '../model/review.dart';
 
 class ReviewApi {
-  static Future<List<Review>> getReviews(int id) async {
-    final url = Uri.parse('http://10.0.2.2:8080/api/review/$id');
-
+  static Future<List<Review>> getReviews() async {
+    final url = Uri.parse('http://10.0.2.2:8080/api/review');
     final res = await http.get(url);
 
     if (res.statusCode == 200) {

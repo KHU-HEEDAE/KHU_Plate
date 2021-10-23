@@ -33,7 +33,6 @@ class FoodApi {
 
     if (res.statusCode == 200) {
       final food = json.decode(res.body);
-      print('food: $food');
 
       return Food.fromJson(food);
     } else {

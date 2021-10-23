@@ -79,7 +79,7 @@ class _NavState extends State<Nav> {
                             height: 24,
                             child: Padding(
                                 padding: const EdgeInsets.only(bottom: 4),
-                                child: SvgPicture.asset("assets/icons/home_icon.svg", color: Colors.black)
+                                child: SvgPicture.asset("assets/icons/home_filled_icon.svg")
                             )
                         ),
                         label: '홈'
@@ -98,7 +98,7 @@ class _NavState extends State<Nav> {
                             height: 24,
                             child: Padding(
                                 padding: const EdgeInsets.only(bottom: 4),
-                                child: SvgPicture.asset("assets/icons/review_feed_icon.svg", color: Colors.black)
+                                child: SvgPicture.asset("assets/icons/review_feed_filled_icon.svg")
                             )
                         ),
                         label: '최신리뷰'
@@ -117,7 +117,7 @@ class _NavState extends State<Nav> {
                             height: 24,
                             child: Padding(
                                 padding: const EdgeInsets.only(bottom: 4),
-                                child: SvgPicture.asset("assets/icons/write_review_icon.svg", color: Colors.black)
+                                child: SvgPicture.asset("assets/icons/write_review_filled_icon.svg")
                             )
                         ),
                         label: '리뷰작성'
