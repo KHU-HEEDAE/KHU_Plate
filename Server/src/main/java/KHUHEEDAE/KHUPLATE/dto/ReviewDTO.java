@@ -1,6 +1,7 @@
 package KHUHEEDAE.KHUPLATE.dto;
 
 import KHUHEEDAE.KHUPLATE.domain.Review;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,4 +25,14 @@ public class ReviewDTO {
         this.date=review.getDate();
         this.rate = review.getRate();
     }
+
+    public Review toEntity(){
+        return Review.builder()
+                .content(content)
+                .reviewer(reviewer)
+                .rate(rate)
+                .build();
+    }
+
+
 }
