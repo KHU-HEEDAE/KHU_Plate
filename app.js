@@ -112,6 +112,7 @@ app.get('/api/food/:food_id', function(req, res) {
                     review: [
                         {
                             id: 1,
+                            food_id: 1,
                             writer: '학식러',
                             rate: 5.0,
                             content: "백반 가성비 강자!\n가격만 좋은 게 아니라 맛있기까지 해요!\n경희대 근처 맛집으로 강추!",
@@ -120,6 +121,7 @@ app.get('/api/food/:food_id', function(req, res) {
                         },
                         {
                             id: 2,
+                            food_id: 1,
                             writer: '지나가던 희대인',
                             rate: 4.7,
                             content: null,
@@ -128,6 +130,7 @@ app.get('/api/food/:food_id', function(req, res) {
                         },
                         {
                             id: 3,
+                            food_id: 1,
                             writer: '통학시러',
                             rate: 4.1,
                             content: "맛있어요~",
@@ -136,6 +139,7 @@ app.get('/api/food/:food_id', function(req, res) {
                         },
                         {
                             id: 4,
+                            food_id: 1,
                             writer: '희대굳',
                             rate: 4.5,
                             content: null,
@@ -144,6 +148,7 @@ app.get('/api/food/:food_id', function(req, res) {
                         },
                         {
                             id: 5,
+                            food_id: 1,
                             writer: '대학원생은 미생',
                             rate: 4.2,
                             content: "오 맛있어요우",
@@ -167,6 +172,7 @@ app.get('/api/food/:food_id', function(req, res) {
                     review: [
                         {
                             id: 6,
+                            food_id: 2,
                             writer: '지나가던 희대인',
                             rate: 4.7,
                             content: null,
@@ -175,6 +181,7 @@ app.get('/api/food/:food_id', function(req, res) {
                         },
                         {
                             id: 7,
+                            food_id: 2,
                             writer: '통학시러',
                             rate: 4.1,
                             content: "맛있어요~",
@@ -183,6 +190,7 @@ app.get('/api/food/:food_id', function(req, res) {
                         },
                         {
                             id: 8,
+                            food_id: 2,
                             writer: '학식러',
                             rate: 5.0,
                             content: "스시 가성비 강자!",
@@ -206,6 +214,7 @@ app.get('/api/food/:food_id', function(req, res) {
                     review: [
                         {
                             id: 9,
+                            food_id: 3,
                             writer: '통학시러',
                             rate: 4.6,
                             content: "맛있어요~",
@@ -251,6 +260,7 @@ app.get('/api/review', function(req, res) {
         [
             {
                 id: 1,
+                food_id: 1,
                 writer: '학식러',
                 rate: 5.0,
                 content: "백반 가성비 강자!\n가격만 좋은 게 아니라 맛있기까지 해요!\n경희대 근처 맛집으로 강추!",
@@ -259,6 +269,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 2,
+                food_id: 1,
                 writer: '지나가던 희대인',
                 rate: 4.7,
                 content: null,
@@ -267,6 +278,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 3,
+                food_id: 1,
                 writer: '통학시러',
                 rate: 4.1,
                 content: "맛있어요~",
@@ -275,6 +287,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 4,
+                food_id: 1,
                 writer: '희대굳',
                 rate: 4.5,
                 content: null,
@@ -283,6 +296,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 5,
+                food_id: 1,
                 writer: '대학원생은 미생',
                 rate: 4.2,
                 content: "오 맛있어요우",
@@ -291,6 +305,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 6,
+                food_id: 2,
                 writer: '지나가던 희대인',
                 rate: 4.7,
                 content: null,
@@ -299,6 +314,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 7,
+                food_id: 2,
                 writer: '통학시러',
                 rate: 4.1,
                 content: "맛있어요~ 오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오",
@@ -307,6 +323,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 8,
+                food_id: 2,
                 writer: '학식러',
                 rate: 5.0,
                 content: "스시 가성비 강자!",
@@ -315,6 +332,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 9,
+                food_id: 3,
                 writer: '통학시러',
                 rate: 4.6,
                 content: "맛있어요~ 정말 다시 가고 싶은 곳입니다!",
@@ -323,6 +341,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 1,
+                food_id: 1,
                 writer: '학식러',
                 rate: 5.0,
                 content: "백반 가성비 강자!\n가격만 좋은 게 아니라 맛있기까지 해요!\n경희대 근처 맛집으로 강추!",
@@ -331,6 +350,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 2,
+                food_id: 1,
                 writer: '지나가던 희대인',
                 rate: 4.7,
                 content: null,
@@ -339,6 +359,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 3,
+                food_id: 1,
                 writer: '통학시러',
                 rate: 4.1,
                 content: "맛있어요~",
@@ -347,6 +368,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 4,
+                food_id: 1,
                 writer: '희대굳',
                 rate: 4.5,
                 content: null,
@@ -355,6 +377,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 5,
+                food_id: 1,
                 writer: '대학원생은 미생',
                 rate: 4.2,
                 content: "오 맛있어요우",
@@ -363,6 +386,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 6,
+                food_id: 2,
                 writer: '지나가던 희대인',
                 rate: 4.7,
                 content: null,
@@ -371,6 +395,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 7,
+                food_id: 2,
                 writer: '통학시러',
                 rate: 4.1,
                 content: "맛있어요~ 오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오",
@@ -379,6 +404,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 8,
+                food_id: 2,
                 writer: '학식러',
                 rate: 5.0,
                 content: "스시 가성비 강자!",
@@ -387,6 +413,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 9,
+                food_id: 3,
                 writer: '통학시러',
                 rate: 4.6,
                 content: "맛있어요~ 정말 다시 가고 싶은 곳입니다!",
@@ -395,6 +422,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 1,
+                food_id: 1,
                 writer: '학식러',
                 rate: 5.0,
                 content: "백반 가성비 강자!\n가격만 좋은 게 아니라 맛있기까지 해요!\n경희대 근처 맛집으로 강추!",
@@ -403,6 +431,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 2,
+                food_id: 1,
                 writer: '지나가던 희대인',
                 rate: 4.7,
                 content: null,
@@ -411,6 +440,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 3,
+                food_id: 1,
                 writer: '통학시러',
                 rate: 4.1,
                 content: "맛있어요~",
@@ -419,6 +449,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 4,
+                food_id: 1,
                 writer: '희대굳',
                 rate: 4.5,
                 content: null,
@@ -427,6 +458,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 5,
+                food_id: 1,
                 writer: '대학원생은 미생',
                 rate: 4.2,
                 content: "오 맛있어요우",
@@ -435,6 +467,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 6,
+                food_id: 2,
                 writer: '지나가던 희대인',
                 rate: 4.7,
                 content: null,
@@ -443,6 +476,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 7,
+                food_id: 2,
                 writer: '통학시러',
                 rate: 4.1,
                 content: "맛있어요~ 오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오",
@@ -451,6 +485,7 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 8,
+                food_id: 2,
                 writer: '학식러',
                 rate: 5.0,
                 content: "스시 가성비 강자!",
@@ -459,6 +494,88 @@ app.get('/api/review', function(req, res) {
             },
             {
                 id: 9,
+                food_id: 3,
+                writer: '통학시러',
+                rate: 4.6,
+                content: "맛있어요~ 정말 다시 가고 싶은 곳입니다!",
+                image: null,
+                avatar_path: null
+            },
+            {
+                id: 1,
+                food_id: 1,
+                writer: '학식러',
+                rate: 5.0,
+                content: "백반 가성비 강자!\n가격만 좋은 게 아니라 맛있기까지 해요!\n경희대 근처 맛집으로 강추!",
+                image: "assets/banner_images/food5.png",
+                avatar_path: "assets/banner_images/food1.png"
+            },
+            {
+                id: 2,
+                food_id: 1,
+                writer: '지나가던 희대인',
+                rate: 4.7,
+                content: null,
+                image: "assets/banner_images/food1.png",
+                avatar_path: "assets/banner_images/food2.png"
+            },
+            {
+                id: 3,
+                food_id: 1,
+                writer: '통학시러',
+                rate: 4.1,
+                content: "맛있어요~",
+                image: null,
+                avatar_path: null
+            },
+            {
+                id: 4,
+                food_id: 1,
+                writer: '희대굳',
+                rate: 4.5,
+                content: null,
+                image: null,
+                avatar_path: null
+            },
+            {
+                id: 5,
+                food_id: 1,
+                writer: '대학원생은 미생',
+                rate: 4.2,
+                content: "오 맛있어요우",
+                image: null,
+                avatar_path: null
+            },
+            {
+                id: 6,
+                food_id: 2,
+                writer: '지나가던 희대인',
+                rate: 4.7,
+                content: null,
+                image: "assets/banner_images/food1.png",
+                avatar_path: "assets/banner_images/food2.png"
+            },
+            {
+                id: 7,
+                food_id: 2,
+                writer: '통학시러',
+                rate: 4.1,
+                content: "맛있어요~ 오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오오",
+                image: null,
+                avatar_path: null
+            },
+            {
+                id: 8,
+                food_id: 2,
+                writer: '학식러',
+                rate: 5.0,
+                content: "스시 가성비 강자!",
+                image: "assets/banner_images/food2.png",
+                avatar_path: "assets/banner_images/food1.png"
+            },
+            {
+                id: 9,
+                food_id: 3,
                 writer: '통학시러',
                 rate: 4.6,
                 content: "맛있어요~ 정말 다시 가고 싶은 곳입니다!",
