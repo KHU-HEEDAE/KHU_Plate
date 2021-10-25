@@ -20,7 +20,10 @@ class WriteReview extends StatefulWidget {
       context.findAncestorStateOfType<_WriteReviewState>();
 }
 
-class _WriteReviewState extends State<WriteReview> {
+class _WriteReviewState extends State<WriteReview> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   void initState () {
     if (widget.food != null) {
@@ -357,32 +360,32 @@ class _WriteReviewState extends State<WriteReview> {
                         children: [
                           _imageFile == null
                               ? GestureDetector(
-                              onTap: () {
-                                _selectImg(context);
-                              },
-                              child: Container(
-                                  width: 100,
-                                  height: 100,
-                                  padding: const EdgeInsets.all(20),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(8),
-                                      boxShadow: const [
-                                        BoxShadow(
-                                            color: Color.fromRGBO(0, 0, 0, 0.5),
-                                            offset: Offset(0.0, 1.0),
-                                            blurRadius: 4.0,
-                                            spreadRadius: 0.0
-                                        )
-                                      ]
-                                  ),
-                                  child: SizedBox(
-                                      width: 60,
-                                      height: 60,
-                                      child: SvgPicture.asset("assets/icons/add_icon.svg")
+                                  onTap: () {
+                                    _selectImg(context);
+                                  },
+                                  child: Container(
+                                      width: 100,
+                                      height: 100,
+                                      padding: const EdgeInsets.all(20),
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(4),
+                                          boxShadow: const [
+                                            BoxShadow(
+                                                color: Color.fromRGBO(0, 0, 0, 0.5),
+                                                offset: Offset(0.0, 1.0),
+                                                blurRadius: 4.0,
+                                                spreadRadius: 0.0
+                                            )
+                                          ]
+                                      ),
+                                      child: SizedBox(
+                                          width: 60,
+                                          height: 60,
+                                          child: SvgPicture.asset("assets/icons/add_icon.svg")
+                                      )
                                   )
                               )
-                          )
                               : Container(
                               width: 100,
                               height: 100,
@@ -397,7 +400,42 @@ class _WriteReviewState extends State<WriteReview> {
                                     )
                                   ]
                               ),
-                              child: Image.file(_imageFile!)
+                              child: Stack(
+                                alignment: Alignment.topRight,
+                                clipBehavior: Clip.none,
+                                children: [
+                                  Image.file(_imageFile!),
+                                  Positioned(
+                                    top: -10,
+                                    right: -10,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          _imageFile = null;
+                                        });
+                                      },
+                                      child: Container(
+                                          width: 30,
+                                          height: 30,
+                                          padding: const EdgeInsets.all(10),
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.circular(30),
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                    color: Color.fromRGBO(0, 0, 0, 0.5),
+                                                    offset: Offset(0.0, 2.0),
+                                                    blurRadius: 2.0,
+                                                    spreadRadius: 0.0
+                                                )
+                                              ]
+                                          ),
+                                          child: SvgPicture.asset("assets/icons/cancel_icon.svg")
+                                      )
+                                    )
+                                  )
+                              ],
+                              )
                           )
                         ]
                     ),
@@ -416,9 +454,8 @@ class _WriteReviewState extends State<WriteReview> {
                     Container(
                         height: 165,
                         padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            color: const Color(0xFFEEEEEE),
-                            borderRadius: BorderRadius.circular(8)
+                        decoration: const BoxDecoration(
+                            color: Color(0xFFEEEEEE)
                         ),
                         child: Stack(
                             children: [

@@ -5,6 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:khu_plate/api/review_api.dart';
 import 'package:khu_plate/model/review.dart';
 
+import 'image_modal.dart';
+
 class ReviewGrid extends StatefulWidget {
   const ReviewGrid({Key? key}) : super(key: key);
 
@@ -44,71 +46,108 @@ class _ReviewGridState extends State<ReviewGrid> {
           Widget child = const SizedBox();
 
           if (_reviews[index].imgPath != '') {
-            child = Container(
+            child = GestureDetector(
+              onTap: () async {
+                await showDialog(
+                    context: context,
+                    builder: (_) => ImageModal(page: 'grid', foodId: _reviews[index].foodId, username: _reviews[index].username, avatarPath: _reviews[index].avatarPath, rate: _reviews[index].rate, imgPath: _reviews[index].imgPath, content: _reviews[index].content)
+                );
+              },
+              child: Container(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
                     image: DecorationImage(
                         image: AssetImage(_reviews[index].imgPath),
                         fit: BoxFit.cover
-                    ),
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.5),
-                          offset: Offset(0.0, 1.0),
-                          blurRadius: 4.0,
-                          spreadRadius: 0.0
+                    )
+                ),
+                child: Stack(
+                    children: [
+                      Container(
+                          decoration: const BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                  colors: [
+                                    Color.fromRGBO(0, 0, 0, 0.5),
+                                    Colors.transparent
+                                  ]
+                              )
+                          )
+                      ),
+                      Positioned(
+                        bottom: 10,
+                        left: 10,
+                        child: Row(
+                            children: [
+                              SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: SvgPicture.asset('assets/icons/star_filled_icon.svg')
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                _reviews[index].rate.toStringAsFixed(1),
+                                style: const TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.white
+                                ),
+                              )
+                            ]
+                        ),
                       )
                     ]
                 )
+              )
             );
           } else if (_reviews[index].content != '') {
-            child = Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8),
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.5),
-                          offset: Offset(0.0, 1.0),
-                          blurRadius: 4.0,
-                          spreadRadius: 0.0
-                      )
-                    ]
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
+            child = GestureDetector(
+              onTap: () async {
+                await showDialog(
+                    context: context,
+                    builder: (_) => ImageModal(page: 'grid', foodId: _reviews[index].foodId, username: _reviews[index].username, avatarPath: _reviews[index].avatarPath, rate: _reviews[index].rate, content: _reviews[index].content)
+                );
+              },
+              child: Container(
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(10),
+                  decoration: const BoxDecoration(
+                      color: Color(0xFFF8F8F8)
+                  ),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          width: 20,
-                          height: 20,
-                          child: SvgPicture.asset('assets/icons/star_filled_icon.svg')
+                        Row(
+                            children: [
+                              SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: SvgPicture.asset('assets/icons/star_filled_icon.svg')
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                _reviews[index].rate.toStringAsFixed(1),
+                                style: const TextStyle(
+                                    fontSize: 14
+                                ),
+                              )
+                            ]
                         ),
-                        const SizedBox(width: 4),
+                        const SizedBox(height: 10),
                         Text(
-                          _reviews[index].rate.toStringAsFixed(1),
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 14
-                          ),
+                            _reviews[index].content,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                                fontSize: 13,
+                                height: 1.5,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xFF898989)
+                            )
                         )
                       ]
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                        _reviews[index].content,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400
-                        )
-                    )
-                  ]
-                )
+                  )
+              )
             );
           }
 

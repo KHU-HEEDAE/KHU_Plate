@@ -80,6 +80,7 @@ flutter:
     - assets/icons/star_filled_icon.svg
     - assets/icons/star_half_icon.svg
     - assets/icons/add_icon.svg
+    - assets/icons/cancel_icon.svg
     - assets/icons/must_icon.svg
     - assets/icons/avatar_icon.png
     - assets/banner_images/food1.png

@@ -30,12 +30,18 @@ class _SearchBarState extends State<SearchBar> {
         _overlayEntry.remove();
       }
     });
+    _focusNode.addListener(_onFocus);
     init();
+  }
+
+  _onFocus() {
+    setState(() {});
   }
 
   @override
   void dispose() {
     _timer?.cancel();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -196,7 +202,9 @@ class _SearchBarState extends State<SearchBar> {
                             icon: SizedBox(
                                 width: 24,
                                 height: 24,
-                                child: SvgPicture.asset("assets/icons/search_icon.svg")
+                                child: _isSearching == false
+                                    ? SvgPicture.asset("assets/icons/search_icon.svg")
+                                    : SvgPicture.asset("assets/icons/cancel_icon.svg", color: Colors.white)
                             ),
                             onPressed: () {
                               setState(() {
@@ -221,33 +229,40 @@ class _SearchBarState extends State<SearchBar> {
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
                   filled: true,
-                  fillColor: const Color(0xFFEEEEEE),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: const BorderSide(color: Colors.transparent),
+                  fillColor: const Color(0xFFF4F4F4),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: const BorderSide(color: Colors.transparent),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
                   ),
                   label: const Text(
                       '음식점 이름',
                       style: TextStyle(
                           fontSize: 12,
-                          color: Colors.black
+                          color: Color(0xFF898989)
                       )
                   ),
                   suffixIcon: SizedBox(
                       width: 20,
                       height: 20,
                       child: IconButton(
-                          icon: SvgPicture.asset(
-                              "assets/icons/search_icon.svg",
-                              width: 20,
-                              height: 20,
-                              color: Colors.black
-                          ),
-                          onPressed: () {  }
+                          icon: _focusNode.hasFocus == false
+                              ? SvgPicture.asset(
+                                  "assets/icons/search_icon.svg",
+                                  width: 20,
+                                  height: 20,
+                                  color: const Color(0xFF898989)
+                              )
+                              : SvgPicture.asset(
+                                  "assets/icons/cancel_icon.svg",
+                                  width: 20,
+                                  height: 20,
+                                  color: const Color(0xFF898989)
+                              ),
+                          onPressed: () {
+                            _focusNode.hasFocus == false ? _focusNode.requestFocus() : _focusNode.unfocus();
+                          }
                       )
                   )
               ),

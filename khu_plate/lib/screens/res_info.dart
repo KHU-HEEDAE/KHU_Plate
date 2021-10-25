@@ -69,11 +69,6 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
                   child = const SizedBox();
                 } else if (snapshot.connectionState == ConnectionState.done) {
                   if (snapshot.hasData) {
-                    String tenth = snapshot.data!.rate.toStringAsFixed(1).split('.')[1];
-                    bool isHalfStar = tenth != '0';
-
-                    int rateInt = snapshot.data!.rate.toInt();
-
                     String _tel = '';
 
                     if (snapshot.data!.tel.length == 11) {
@@ -189,15 +184,15 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
                                                         Row(
                                                             mainAxisAlignment: MainAxisAlignment.center,
                                                             children: [
-                                                              if (isHalfStar)
+                                                              if (snapshot.data!.rate.toStringAsFixed(1).split('.')[1] != '0')
                                                                 for (int i = 0; i < 5; i++)
-                                                                  if (i < rateInt)
+                                                                  if (i < snapshot.data!.rate.toInt())
                                                                     SizedBox(
                                                                         width: 20,
                                                                         height: 20,
                                                                         child: SvgPicture.asset("assets/icons/star_filled_icon.svg")
                                                                     )
-                                                                  else if (i == rateInt)
+                                                                  else if (i == snapshot.data!.rate.toInt())
                                                                     SizedBox(
                                                                         width: 20,
                                                                         height: 20,
@@ -211,7 +206,7 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
                                                                     )
                                                               else
                                                                 for (int i = 0; i < 5; i++)
-                                                                  if (i < rateInt)
+                                                                  if (i < snapshot.data!.rate.toInt())
                                                                     SizedBox(
                                                                         width: 20,
                                                                         height: 20,
@@ -453,21 +448,12 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
                                                         alignment: Alignment.center,
                                                         width: 320,
                                                         padding: const EdgeInsets.all(20),
-                                                        decoration: const BoxDecoration(
-                                                            color: Colors.white,
-                                                            boxShadow: [
-                                                              BoxShadow(
-                                                                  color: Color.fromRGBO(0, 0, 0, 0.5),
-                                                                  offset: Offset(0.0, 1.0),
-                                                                  blurRadius: 4.0,
-                                                                  spreadRadius: 0.0
-                                                              )
-                                                            ]
-                                                        ),
                                                         child: const Text(
                                                           '첫 리뷰를 작성해 보세요!',
                                                           style: TextStyle(
-                                                              fontWeight: FontWeight.w500
+                                                              fontWeight: FontWeight.w500,
+                                                              fontStyle: FontStyle.italic,
+                                                              color: Color(0xFF888888)
                                                           ),
                                                         )
                                                     )
