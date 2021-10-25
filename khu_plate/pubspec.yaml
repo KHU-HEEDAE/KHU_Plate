@@ -34,6 +34,10 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_svg: ^0.22.0
+  image_picker:
+  http:
+  url_launcher:
+  flutter_staggered_grid_view:
 
 dev_dependencies:
   flutter_test:
@@ -58,9 +62,13 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icons/home_icon.svg
+    - assets/icons/home_filled_icon.svg
     - assets/icons/more_icon.svg
     - assets/icons/review_feed_icon.svg
+    - assets/icons/review_feed_filled_icon.svg
+    - assets/icons/list_icon.svg
     - assets/icons/write_review_icon.svg
+    - assets/icons/write_review_filled_icon.svg
     - assets/icons/right_arrow_icon.svg
     - assets/icons/left_arrow_icon.svg
     - assets/icons/pagination_dash.svg
@@ -71,13 +79,15 @@ flutter:
     - assets/icons/move_right_arrow_icon.svg
     - assets/icons/star_filled_icon.svg
     - assets/icons/star_half_icon.svg
-    - assets/icons/avatar_icon.svg
+    - assets/icons/add_icon.svg
+    - assets/icons/must_icon.svg
     - assets/icons/avatar_icon.png
     - assets/banner_images/food1.png
     - assets/banner_images/food2.png
     - assets/banner_images/food3.png
     - assets/banner_images/food4.png
     - assets/banner_images/food5.png
+    - assets/banner_images/default.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

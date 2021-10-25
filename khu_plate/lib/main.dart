@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:khu_plate/modules/route_generator.dart';
+import 'package:flutter/services.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown
+    ]
+  );
+
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'KHU_App',
+      title: '희대의 맛집',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -23,6 +32,7 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         fontFamily: 'Nexon_Gothic',
+        scaffoldBackgroundColor: Colors.white,
         primarySwatch: Colors.grey,
       ),
       initialRoute: '/',

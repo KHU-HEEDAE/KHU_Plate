@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.khuplate.khu_plate">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="khu_plate"
         android:icon="@mipmap/ic_launcher">

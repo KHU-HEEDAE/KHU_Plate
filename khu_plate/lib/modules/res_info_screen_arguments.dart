@@ -1,8 +1,5 @@
 class ResInfoScreenArguments {
-  final String img;
-  final String name;
-  final String rate;
-  final String numReview;
+  final int id;
 
-  ResInfoScreenArguments(this.img, this.name, this.rate, this.numReview);
+  ResInfoScreenArguments(this.id);
 }
