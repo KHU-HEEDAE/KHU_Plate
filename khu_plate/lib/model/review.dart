@@ -1,5 +1,6 @@
 class Review {
   final int id;
+  final int foodId;
   final String username;
   final double rate;
   final String content;
@@ -8,6 +9,7 @@ class Review {
 
   const Review({
     required this.id,
+    required this.foodId,
     required this.username,
     required this.rate,
     required this.content,
@@ -17,6 +19,7 @@ class Review {
 
   factory Review.fromJson(Map<String, dynamic> json) => Review(
       id: json['id'],
+      foodId: json['food_id'],
       username: json['writer'],
       rate: json['rate'].toDouble(),
       content: json['content'] ??= "",

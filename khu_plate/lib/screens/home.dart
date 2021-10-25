@@ -15,7 +15,10 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   void dispose() {
     _categoryController.dispose();
@@ -70,7 +73,8 @@ class _HomeState extends State<Home> {
                                                   child: Text(_thumbWheels[i] + " 선택",
                                                       style: const TextStyle(
                                                           fontWeight: FontWeight.w500,
-                                                          fontSize: 12)
+                                                          fontSize: 14
+                                                      )
                                                   )
                                               )
                                           ),
@@ -248,12 +252,12 @@ class _HomeState extends State<Home> {
                                             const Text("결과 맛집",
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.w500,
-                                                    fontSize: 12
+                                                    fontSize: 14
                                                 )
                                             ),
                                             SizedBox(
-                                                width: 45,
-                                                height: 11,
+                                                width: 50,
+                                                height: 14,
                                                 child: TextButton(
                                                     onPressed: () {},
                                                     style: TextButton.styleFrom(
@@ -263,7 +267,7 @@ class _HomeState extends State<Home> {
                                                       children: [
                                                         const Text('더보기',
                                                             style: TextStyle(
-                                                                fontSize: 12,
+                                                                fontSize: 14,
                                                                 fontWeight: FontWeight.w400,
                                                                 color: Color(0xFF898989)
                                                             )
@@ -356,7 +360,10 @@ class _HomeState extends State<Home> {
                                                                           height: 190,
                                                                           decoration: BoxDecoration(
                                                                               color: Colors.white,
-                                                                              borderRadius: BorderRadius.circular(8),
+                                                                              image: DecorationImage(
+                                                                                  image: AssetImage(snapshot.data![i].imgPath),
+                                                                                  fit: BoxFit.cover
+                                                                              ),
                                                                               boxShadow: const [
                                                                                 BoxShadow(
                                                                                     color: Color.fromRGBO(0, 0, 0, 0.5),
@@ -366,63 +373,73 @@ class _HomeState extends State<Home> {
                                                                                 )
                                                                               ]
                                                                           ),
-                                                                          child: Column(
-                                                                              children: [
-                                                                                Container(
-                                                                                  width: 140,
-                                                                                  height: 140,
-                                                                                  decoration: BoxDecoration(
-                                                                                      borderRadius: BorderRadius.circular(8),
-                                                                                      image: DecorationImage(
-                                                                                          image: AssetImage(snapshot.data![i].imgPath),
-                                                                                          fit: BoxFit.cover
+                                                                          child: Stack(
+                                                                            children: [
+                                                                              Container(
+                                                                                  decoration: const BoxDecoration(
+                                                                                      gradient: LinearGradient(
+                                                                                          begin: Alignment.bottomCenter,
+                                                                                          end: Alignment.topCenter,
+                                                                                          colors: [
+                                                                                            Color.fromRGBO(0, 0, 0, 0.6),
+                                                                                            Colors.transparent
+                                                                                          ],
+                                                                                          stops: [
+                                                                                            0.3,
+                                                                                            1.0
+                                                                                          ]
                                                                                       )
                                                                                   )
-                                                                                ),
-                                                                                Padding(
-                                                                                    padding: const EdgeInsets.all(10),
-                                                                                    child: Column(
-                                                                                        children: [
-                                                                                          SizedBox(
-                                                                                              width: double.infinity,
-                                                                                              child: Text(
-                                                                                                snapshot.data![i].name,
-                                                                                                style: const TextStyle(
-                                                                                                    fontWeight: FontWeight.w700,
-                                                                                                    fontSize: 12),
+                                                                              ),
+                                                                              Positioned(
+                                                                                  bottom: 10,
+                                                                                  left: 10,
+                                                                                  child: Column(
+                                                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                      children: [
+                                                                                        SizedBox(
+                                                                                            child: Text(
+                                                                                              snapshot.data![i].name,
+                                                                                              style: const TextStyle(
+                                                                                                  fontWeight: FontWeight.w500,
+                                                                                                  fontSize: 16,
+                                                                                                  color: Colors.white
                                                                                               )
-                                                                                          ),
-                                                                                          const SizedBox(height: 5),
-                                                                                          SizedBox(
-                                                                                              width: double.infinity,
-                                                                                              child: Row(
-                                                                                                  children: [
-                                                                                                    SizedBox(
-                                                                                                      width: 11,
-                                                                                                      height: 11,
-                                                                                                      child: SvgPicture.asset("assets/icons/star_filled_icon.svg"),
+                                                                                            )
+                                                                                        ),
+                                                                                        const SizedBox(height: 5),
+                                                                                        SizedBox(
+                                                                                            child: Row(
+                                                                                                children: [
+                                                                                                  SizedBox(
+                                                                                                    width: 14,
+                                                                                                    height: 14,
+                                                                                                    child: SvgPicture.asset("assets/icons/star_filled_icon.svg"),
+                                                                                                  ),
+                                                                                                  const SizedBox(width: 2),
+                                                                                                  Text(
+                                                                                                    '${snapshot.data![i].rate}',
+                                                                                                    style: const TextStyle(
+                                                                                                        fontSize: 14,
+                                                                                                        color: Colors.white
                                                                                                     ),
-                                                                                                    const SizedBox(width: 2),
-                                                                                                    Text(
-                                                                                                      '${snapshot.data![i].rate}',
+                                                                                                  ),
+                                                                                                  const SizedBox(width: 5),
+                                                                                                  Text(
+                                                                                                      '(${snapshot.data![i].reviewCount}개의 리뷰)',
                                                                                                       style: const TextStyle(
-                                                                                                          fontSize: 10
-                                                                                                      ),
-                                                                                                    ),
-                                                                                                    const SizedBox(width: 5),
-                                                                                                    Text(
-                                                                                                        '(${snapshot.data![i].reviewCount}개의 리뷰)',
-                                                                                                        style: const TextStyle(
-                                                                                                            color: Color(0xFF898989),
-                                                                                                            fontSize: 10)
-                                                                                                    )
-                                                                                                  ]
-                                                                                              )
-                                                                                          )
-                                                                                        ]
-                                                                                    )
-                                                                                )
-                                                                              ]
+                                                                                                          fontSize: 12,
+                                                                                                          fontWeight: FontWeight.w400,
+                                                                                                          color: Colors.white,
+                                                                                                      )
+                                                                                                  )
+                                                                                                ]
+                                                                                            )
+                                                                                        )
+                                                                                      ]
+                                                                                  )
+                                                                              )
+                                                                            ],
                                                                           )
                                                                       )
                                                                   )

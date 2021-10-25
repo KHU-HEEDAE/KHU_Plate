@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>close</title>
+    <g id="close" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" fill="#000000" transform="translate(13.000000, 12.500000) rotate(45.000000) translate(-13.000000, -12.500000) " x="-3" y="11" width="32" height="3"></rect>
+        <polygon id="Rectangle" fill="#000000" transform="translate(20.424621, 6.282486) rotate(-45.000000) translate(-20.424621, -6.282486) " points="14.4246212 4.78248558 26.4246212 4.78248558 26.4246212 7.78248558 14.4246212 7.78248558"></polygon>
+        <polygon id="Rectangle" fill="#000000" transform="translate(21.071068, 5.636039) rotate(-45.000000) translate(-21.071068, -5.636039) " points="15.5710678 4.13603897 26.5710678 4.13603897 26.5710678 7.13603897 15.5710678 7.13603897"></polygon>
+        <rect id="Rectangle" fill="#000000" transform="translate(7.343146, 19.363961) rotate(-45.000000) translate(-7.343146, -19.363961) " x="-0.156854249" y="17.863961" width="15" height="3"></rect>
+    </g>
+</svg>

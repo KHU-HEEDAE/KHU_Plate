@@ -92,7 +92,18 @@ class _CarouselState extends State<Carousel> {
                                           Container(
                                               height: 240,
                                               decoration: const BoxDecoration(
-                                                  color: Color.fromRGBO(0, 0, 0, 0.5)
+                                                  gradient: LinearGradient(
+                                                      begin: Alignment.bottomCenter,
+                                                      end: Alignment.topCenter,
+                                                      colors: [
+                                                        Color.fromRGBO(0, 0, 0, 0.6),
+                                                        Colors.transparent
+                                                      ],
+                                                      stops: [
+                                                        0.3,
+                                                        1.0
+                                                      ]
+                                                  )
                                               )
                                           ),
                                           Positioned(

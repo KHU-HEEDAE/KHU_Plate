@@ -11,7 +11,10 @@ class ReviewFeed extends StatefulWidget {
   _ReviewFeedState createState() => _ReviewFeedState();
 }
 
-class _ReviewFeedState extends State<ReviewFeed> with TickerProviderStateMixin {
+class _ReviewFeedState extends State<ReviewFeed> with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   late TabController _tabController;
   final ScrollController _scrollController = ScrollController();
 
