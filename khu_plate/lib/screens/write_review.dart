@@ -122,6 +122,8 @@ class _WriteReviewState extends State<WriteReview> with AutomaticKeepAliveClient
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     String tenth = _rateValue.toStringAsFixed(1).split('.')[1];
     bool isHalfStar = tenth != '0';
     int rateInt = _rateValue.toInt();
@@ -503,7 +505,7 @@ class _WriteReviewState extends State<WriteReview> with AutomaticKeepAliveClient
                     const SizedBox(height: 25),
                     SizedBox(
                         width: double.infinity,
-                        height: 30,
+                        height: 35,
                         child: TextButton(
                             style: ButtonStyle(
                                 backgroundColor: MaterialStateProperty.all(Colors.black),
@@ -514,10 +516,10 @@ class _WriteReviewState extends State<WriteReview> with AutomaticKeepAliveClient
                                 )
                             ),
                             child: const Text(
-                              '등록',
+                              '등 록',
                               style: TextStyle(
                                   fontSize: 14,
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w500,
                                   color: Colors.white
                               ),
                             ),

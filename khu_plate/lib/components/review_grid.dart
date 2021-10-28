@@ -50,7 +50,15 @@ class _ReviewGridState extends State<ReviewGrid> {
               onTap: () async {
                 await showDialog(
                     context: context,
-                    builder: (_) => ImageModal(page: 'grid', foodId: _reviews[index].foodId, username: _reviews[index].username, avatarPath: _reviews[index].avatarPath, rate: _reviews[index].rate, imgPath: _reviews[index].imgPath, content: _reviews[index].content)
+                    builder: (_) => ImageModal(
+                        page: 'grid',
+                        foodId: _reviews[index].foodId,
+                        username: _reviews[index].username,
+                        avatarPath: _reviews[index].avatarPath,
+                        rate: _reviews[index].rate,
+                        imgPath: _reviews[index].imgPath,
+                        content: _reviews[index].content
+                    )
                 );
               },
               child: Container(
@@ -104,7 +112,14 @@ class _ReviewGridState extends State<ReviewGrid> {
               onTap: () async {
                 await showDialog(
                     context: context,
-                    builder: (_) => ImageModal(page: 'grid', foodId: _reviews[index].foodId, username: _reviews[index].username, avatarPath: _reviews[index].avatarPath, rate: _reviews[index].rate, content: _reviews[index].content)
+                    builder: (_) => ImageModal(
+                        page: 'grid',
+                        foodId: _reviews[index].foodId,
+                        username: _reviews[index].username,
+                        avatarPath: _reviews[index].avatarPath,
+                        rate: _reviews[index].rate,
+                        content: _reviews[index].content
+                    )
                 );
               },
               child: Container(

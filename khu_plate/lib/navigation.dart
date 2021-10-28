@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'screens/home.dart';
 import 'screens/review_feed.dart';
 import 'screens/write_review.dart';
-import 'screens/more.dart';
+import 'screens/user_info.dart';
 import 'package:flutter_svg/svg.dart';
 
 class Nav extends StatefulWidget {
@@ -36,7 +36,7 @@ class _NavState extends State<Nav> {
               Home(),
               ReviewFeed(),
               WriteReview(),
-              More()
+              UserInfo()
             ],
             onPageChanged: _onPageChange,
           ),
@@ -128,7 +128,7 @@ class _NavState extends State<Nav> {
                             height: 24,
                             child: Padding(
                                 padding: const EdgeInsets.only(bottom: 4),
-                                child: SvgPicture.asset("assets/icons/more_icon.svg")
+                                child: SvgPicture.asset("assets/icons/account_icon.svg")
                             )
                         ),
                         activeIcon: SizedBox(
@@ -136,10 +136,10 @@ class _NavState extends State<Nav> {
                             height: 24,
                             child: Padding(
                                 padding: const EdgeInsets.only(bottom: 4),
-                                child: SvgPicture.asset("assets/icons/more_icon.svg", color: Colors.black)
+                                child: SvgPicture.asset("assets/icons/account_filled_icon.svg")
                             )
                         ),
-                        label: '더보기'
+                        label: '내정보'
                     )
                   ]
               )

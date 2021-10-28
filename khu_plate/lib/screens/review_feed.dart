@@ -38,6 +38,8 @@ class _ReviewFeedState extends State<ReviewFeed> with TickerProviderStateMixin, 
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return DefaultTabController(
         length: 2,
         child: SafeArea(

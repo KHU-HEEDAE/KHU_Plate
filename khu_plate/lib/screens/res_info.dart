@@ -34,7 +34,7 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
               });
       });
     });
-    resData = _getFood();
+    _resData = _getFood();
   }
 
   @override
@@ -47,7 +47,7 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
     return await FoodApi.getFood(widget.id.toString());
   }
 
-  Future<Food>? resData;
+  Future<Food>? _resData;
 
   final ScrollController _scrollController = ScrollController();
 
@@ -61,12 +61,20 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
             width: double.infinity,
             height: double.infinity,
             child: FutureBuilder(
-              future: resData,
+              future: _resData,
               builder: (context, AsyncSnapshot<Food> snapshot) {
                 Widget child = const SizedBox();
 
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  child = const SizedBox();
+                  child = const Center(
+                    child: SizedBox(
+                      width: 120,
+                      height: 120,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 5
+                      ),
+                    ),
+                  );
                 } else if (snapshot.connectionState == ConnectionState.done) {
                   if (snapshot.hasData) {
                     String _tel = '';

@@ -49,6 +49,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
+      super.build(context);
+
       return Column(
           children: [
               Stack(
@@ -291,173 +293,175 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                               ),
                               const SizedBox(height: 20),
                               // 맛집 정렬
-                              SingleChildScrollView(
-                                  padding: const EdgeInsets.only(left: 10, right: 20),
-                                  scrollDirection: Axis.horizontal,
-                                  child: FutureBuilder(
-                                      future: _getFoods(),
-                                      builder: (context, AsyncSnapshot<List<Foods>> snapshot) {
+                              SizedBox(
+                                width: double.infinity,
+                                child: SingleChildScrollView(
+                                    padding: const EdgeInsets.only(left: 10, right: 20),
+                                    scrollDirection: Axis.horizontal,
+                                    child: FutureBuilder(
+                                        future: _getFoods(),
+                                        builder: (context, AsyncSnapshot<List<Foods>> snapshot) {
                                           Widget child;
 
                                           if (snapshot.connectionState == ConnectionState.waiting) {
-                                              child = SizedBox(
-                                                  width: (MediaQuery.of(context).size.width),
-                                                  height: 195,
-                                                  child: Stack(
-                                                      children: [
-                                                        Positioned (
-                                                            top: 0,
-                                                            left: 10,
-                                                            child: Container(
-                                                                width: 140,
-                                                                height: 190,
-                                                                decoration: BoxDecoration(
-                                                                    color: const Color(0xFFD8D8D8),
-                                                                    borderRadius: BorderRadius.circular(8),
-                                                                    boxShadow: const [
-                                                                      BoxShadow(
-                                                                          color: Color.fromRGBO(0, 0, 0, 0.5),
-                                                                          offset: Offset(0.0, 2.0),
-                                                                          blurRadius: 2.0,
-                                                                          spreadRadius: 0.0
-                                                                      )
-                                                                    ]
-                                                                ),
-                                                                child: const Center(
-                                                                    child: SizedBox(
-                                                                        height: 100,
-                                                                        width: 100,
-                                                                        child: CircularProgressIndicator(
-                                                                            strokeWidth: 3
-                                                                        )
+                                            child = SizedBox(
+                                                width: (MediaQuery.of(context).size.width),
+                                                height: 195,
+                                                child: Stack(
+                                                    children: [
+                                                      Positioned (
+                                                          top: 0,
+                                                          left: 10,
+                                                          child: Container(
+                                                              width: 140,
+                                                              height: 190,
+                                                              decoration: const BoxDecoration(
+                                                                  color: Color(0xFFD8D8D8),
+                                                                  boxShadow: [
+                                                                    BoxShadow(
+                                                                        color: Color.fromRGBO(0, 0, 0, 0.5),
+                                                                        offset: Offset(0.0, 2.0),
+                                                                        blurRadius: 2.0,
+                                                                        spreadRadius: 0.0
                                                                     )
-                                                                )
-                                                            )
-                                                        )
-                                                      ]
-                                                  )
-                                              );
-                                          } else if (snapshot.connectionState == ConnectionState.done) {
-                                              if (snapshot.hasData) {
-                                                  child = Row(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      mainAxisAlignment: MainAxisAlignment.start,
-                                                      children: [
-                                                          for (var i = 0; i < snapshot.data!.length; i++)
-                                                              Padding(
-                                                                  padding: const EdgeInsets.only(left: 10, bottom: 5),
-                                                                  child: GestureDetector(
-                                                                      onTap: () {
-                                                                          Navigator.of(context).pushNamed(
-                                                                              '/res-info',
-                                                                              arguments: ResInfoScreenArguments(
-                                                                                  snapshot.data![i].id
-                                                                              )
-                                                                          );
-                                                                      },
-                                                                      child: Container(
-                                                                          width: 140,
-                                                                          height: 190,
-                                                                          decoration: BoxDecoration(
-                                                                              color: Colors.white,
-                                                                              image: DecorationImage(
-                                                                                  image: AssetImage(snapshot.data![i].imgPath),
-                                                                                  fit: BoxFit.cover
-                                                                              ),
-                                                                              boxShadow: const [
-                                                                                BoxShadow(
-                                                                                    color: Color.fromRGBO(0, 0, 0, 0.5),
-                                                                                    offset: Offset(0.0, 2.0),
-                                                                                    blurRadius: 2.0,
-                                                                                    spreadRadius: 0.0
-                                                                                )
-                                                                              ]
-                                                                          ),
-                                                                          child: Stack(
-                                                                            children: [
-                                                                              Container(
-                                                                                  decoration: const BoxDecoration(
-                                                                                      gradient: LinearGradient(
-                                                                                          begin: Alignment.bottomCenter,
-                                                                                          end: Alignment.topCenter,
-                                                                                          colors: [
-                                                                                            Color.fromRGBO(0, 0, 0, 0.6),
-                                                                                            Colors.transparent
-                                                                                          ],
-                                                                                          stops: [
-                                                                                            0.3,
-                                                                                            1.0
-                                                                                          ]
-                                                                                      )
-                                                                                  )
-                                                                              ),
-                                                                              Positioned(
-                                                                                  bottom: 10,
-                                                                                  left: 10,
-                                                                                  child: Column(
-                                                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                      children: [
-                                                                                        SizedBox(
-                                                                                            child: Text(
-                                                                                              snapshot.data![i].name,
-                                                                                              style: const TextStyle(
-                                                                                                  fontWeight: FontWeight.w500,
-                                                                                                  fontSize: 16,
-                                                                                                  color: Colors.white
-                                                                                              )
-                                                                                            )
-                                                                                        ),
-                                                                                        const SizedBox(height: 5),
-                                                                                        SizedBox(
-                                                                                            child: Row(
-                                                                                                children: [
-                                                                                                  SizedBox(
-                                                                                                    width: 14,
-                                                                                                    height: 14,
-                                                                                                    child: SvgPicture.asset("assets/icons/star_filled_icon.svg"),
-                                                                                                  ),
-                                                                                                  const SizedBox(width: 2),
-                                                                                                  Text(
-                                                                                                    '${snapshot.data![i].rate}',
-                                                                                                    style: const TextStyle(
-                                                                                                        fontSize: 14,
-                                                                                                        color: Colors.white
-                                                                                                    ),
-                                                                                                  ),
-                                                                                                  const SizedBox(width: 5),
-                                                                                                  Text(
-                                                                                                      '(${snapshot.data![i].reviewCount}개의 리뷰)',
-                                                                                                      style: const TextStyle(
-                                                                                                          fontSize: 12,
-                                                                                                          fontWeight: FontWeight.w400,
-                                                                                                          color: Colors.white,
-                                                                                                      )
-                                                                                                  )
-                                                                                                ]
-                                                                                            )
-                                                                                        )
-                                                                                      ]
-                                                                                  )
-                                                                              )
-                                                                            ],
-                                                                          )
+                                                                  ]
+                                                              ),
+                                                              child: const Center(
+                                                                  child: SizedBox(
+                                                                      height: 100,
+                                                                      width: 100,
+                                                                      child: CircularProgressIndicator(
+                                                                          strokeWidth: 3
                                                                       )
                                                                   )
                                                               )
-                                                      ]
-                                                  );
-                                              } else if (snapshot.hasError) {
-                                                  child = Text('data: ${snapshot.data},\nerror: ${snapshot.error}');
-                                              } else {
-                                                  child = const Text('connection error');
-                                              }
-                                          } else {
+                                                          )
+                                                      )
+                                                    ]
+                                                )
+                                            );
+                                          } else if (snapshot.connectionState == ConnectionState.done) {
+                                            if (snapshot.hasData) {
+                                              child = Row(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                  children: [
+                                                    for (var i = 0; i < snapshot.data!.length; i++)
+                                                      Padding(
+                                                          padding: const EdgeInsets.only(left: 10, bottom: 5),
+                                                          child: GestureDetector(
+                                                              onTap: () {
+                                                                Navigator.of(context).pushNamed(
+                                                                    '/res-info',
+                                                                    arguments: ResInfoScreenArguments(
+                                                                        snapshot.data![i].id
+                                                                    )
+                                                                );
+                                                              },
+                                                              child: Container(
+                                                                  width: 140,
+                                                                  height: 190,
+                                                                  decoration: BoxDecoration(
+                                                                      color: Colors.white,
+                                                                      image: DecorationImage(
+                                                                          image: AssetImage(snapshot.data![i].imgPath),
+                                                                          fit: BoxFit.cover
+                                                                      ),
+                                                                      boxShadow: const [
+                                                                        BoxShadow(
+                                                                            color: Color.fromRGBO(0, 0, 0, 0.5),
+                                                                            offset: Offset(0.0, 2.0),
+                                                                            blurRadius: 2.0,
+                                                                            spreadRadius: 0.0
+                                                                        )
+                                                                      ]
+                                                                  ),
+                                                                  child: Stack(
+                                                                    children: [
+                                                                      Container(
+                                                                          decoration: const BoxDecoration(
+                                                                              gradient: LinearGradient(
+                                                                                  begin: Alignment.bottomCenter,
+                                                                                  end: Alignment.topCenter,
+                                                                                  colors: [
+                                                                                    Color.fromRGBO(0, 0, 0, 0.6),
+                                                                                    Colors.transparent
+                                                                                  ],
+                                                                                  stops: [
+                                                                                    0.3,
+                                                                                    1.0
+                                                                                  ]
+                                                                              )
+                                                                          )
+                                                                      ),
+                                                                      Positioned(
+                                                                          bottom: 10,
+                                                                          left: 10,
+                                                                          child: Column(
+                                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                                              children: [
+                                                                                SizedBox(
+                                                                                    child: Text(
+                                                                                        snapshot.data![i].name,
+                                                                                        style: const TextStyle(
+                                                                                            fontWeight: FontWeight.w500,
+                                                                                            fontSize: 16,
+                                                                                            color: Colors.white
+                                                                                        )
+                                                                                    )
+                                                                                ),
+                                                                                const SizedBox(height: 5),
+                                                                                SizedBox(
+                                                                                    child: Row(
+                                                                                        children: [
+                                                                                          SizedBox(
+                                                                                            width: 14,
+                                                                                            height: 14,
+                                                                                            child: SvgPicture.asset("assets/icons/star_filled_icon.svg"),
+                                                                                          ),
+                                                                                          const SizedBox(width: 2),
+                                                                                          Text(
+                                                                                            '${snapshot.data![i].rate}',
+                                                                                            style: const TextStyle(
+                                                                                                fontSize: 14,
+                                                                                                color: Colors.white
+                                                                                            ),
+                                                                                          ),
+                                                                                          const SizedBox(width: 5),
+                                                                                          Text(
+                                                                                              '(${snapshot.data![i].reviewCount}개의 리뷰)',
+                                                                                              style: const TextStyle(
+                                                                                                fontSize: 12,
+                                                                                                fontWeight: FontWeight.w400,
+                                                                                                color: Colors.white,
+                                                                                              )
+                                                                                          )
+                                                                                        ]
+                                                                                    )
+                                                                                )
+                                                                              ]
+                                                                          )
+                                                                      )
+                                                                    ],
+                                                                  )
+                                                              )
+                                                          )
+                                                      )
+                                                  ]
+                                              );
+                                            } else if (snapshot.hasError) {
+                                              child = Text('data: ${snapshot.data},\nerror: ${snapshot.error}');
+                                            } else {
                                               child = const Text('connection error');
+                                            }
+                                          } else {
+                                            child = const Text('connection error');
                                           }
 
                                           return child;
-                                      }
-                                  )
+                                        }
+                                    )
+                                )
                               )
                           ]
                       )
