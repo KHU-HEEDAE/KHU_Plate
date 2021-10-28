@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_svg/svg.dart';
+import '../modules/res_list_screen_arguments.dart';
 // http api
 import 'package:khu_plate/model/app_banner.dart';
 import '../api/app_banner_api.dart';
@@ -79,73 +80,86 @@ class _CarouselState extends State<Carousel> {
                           if (snapshot.hasData) {
                             for (var i = 0; i < snapshot.data!.length; i++) {
                               _pageViewChildren.add(
-                                  Container(
-                                      height: 240,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage(snapshot.data![i].imgPath),
-                                              fit: BoxFit.cover)
-                                      ),
-                                      child: Stack(
-                                        alignment: Alignment.bottomLeft,
-                                        children: [
-                                          Container(
-                                              height: 240,
-                                              decoration: const BoxDecoration(
-                                                  gradient: LinearGradient(
-                                                      begin: Alignment.bottomCenter,
-                                                      end: Alignment.topCenter,
-                                                      colors: [
-                                                        Color.fromRGBO(0, 0, 0, 0.6),
-                                                        Colors.transparent
-                                                      ],
-                                                      stops: [
-                                                        0.3,
-                                                        1.0
-                                                      ]
-                                                  )
-                                              )
-                                          ),
-                                          Positioned(
-                                              bottom: 36,
-                                              left: 20,
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Text(
-                                                    snapshot.data![i].txt1,
-                                                    style: const TextStyle(
-                                                        fontWeight: FontWeight.w500,
-                                                        fontSize: 24,
-                                                        color: Colors.white
-                                                    ),
-                                                  ),
-                                                  const SizedBox(height: 10),
-                                                  Row(
-                                                    mainAxisAlignment: MainAxisAlignment.start,
-                                                    mainAxisSize: MainAxisSize.min,
-                                                    children: [
-                                                      Text(
-                                                        snapshot.data![i].txt2,
-                                                        style: const TextStyle(
-                                                            fontSize: 16,
-                                                            color: Colors.white
-                                                        ),
-                                                      ),
-                                                      const SizedBox(width: 10),
-                                                      SizedBox(
-                                                          width: 6,
-                                                          height: 11,
-                                                          child: SvgPicture.asset("assets/icons/right_arrow_icon.svg")
-                                                      )
-                                                    ],
-                                                  )
-                                                ],
-                                              )
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.of(context).pushNamed(
+                                          '/res-list',
+                                          arguments: ResListScreenArguments(
+                                              snapshot.data![i].categoryId,
+                                              1,
+                                              null
                                           )
-                                        ],
-                                      )
+                                      );
+                                    },
+                                    child: Container(
+                                        height: 240,
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: AssetImage(snapshot.data![i].imgPath),
+                                                fit: BoxFit.cover
+                                            )
+                                        ),
+                                        child: Stack(
+                                          alignment: Alignment.bottomLeft,
+                                          children: [
+                                            Container(
+                                                height: 240,
+                                                decoration: const BoxDecoration(
+                                                    gradient: LinearGradient(
+                                                        begin: Alignment.bottomCenter,
+                                                        end: Alignment.topCenter,
+                                                        colors: [
+                                                          Color.fromRGBO(0, 0, 0, 0.6),
+                                                          Colors.transparent
+                                                        ],
+                                                        stops: [
+                                                          0.3,
+                                                          1.0
+                                                        ]
+                                                    )
+                                                )
+                                            ),
+                                            Positioned(
+                                                bottom: 36,
+                                                left: 20,
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  children: [
+                                                    Text(
+                                                      snapshot.data![i].txt1,
+                                                      style: const TextStyle(
+                                                          fontWeight: FontWeight.w500,
+                                                          fontSize: 24,
+                                                          color: Colors.white
+                                                      ),
+                                                    ),
+                                                    const SizedBox(height: 10),
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.start,
+                                                      mainAxisSize: MainAxisSize.min,
+                                                      children: [
+                                                        Text(
+                                                          snapshot.data![i].txt2,
+                                                          style: const TextStyle(
+                                                              fontSize: 16,
+                                                              color: Colors.white
+                                                          ),
+                                                        ),
+                                                        const SizedBox(width: 10),
+                                                        SizedBox(
+                                                            width: 6,
+                                                            height: 11,
+                                                            child: SvgPicture.asset("assets/icons/right_arrow_icon.svg")
+                                                        )
+                                                      ],
+                                                    )
+                                                  ],
+                                                )
+                                            )
+                                          ],
+                                        )
+                                    )
                                   )
                               );
                             }

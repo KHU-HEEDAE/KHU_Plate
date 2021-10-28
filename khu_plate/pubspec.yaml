@@ -64,6 +64,8 @@ flutter:
     - assets/icons/home_icon.svg
     - assets/icons/home_filled_icon.svg
     - assets/icons/more_icon.svg
+    - assets/icons/account_icon.svg
+    - assets/icons/account_filled_icon.svg
     - assets/icons/review_feed_icon.svg
     - assets/icons/review_feed_filled_icon.svg
     - assets/icons/list_icon.svg

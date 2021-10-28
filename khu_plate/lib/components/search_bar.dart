@@ -1,10 +1,13 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:khu_plate/modules/res_info_screen_arguments.dart';
+import 'package:khu_plate/modules/res_list_screen_arguments.dart';
 // http api
 import '../model/food.dart';
 import '../api/food_api.dart';
+import 'custom_list_tile.dart';
 
 typedef FoodCallback = void Function(Foods obj);
 
@@ -46,7 +49,6 @@ class _SearchBarState extends State<SearchBar> {
   }
 
   List<Foods> _foods = [];
-  String _query = '';
   Timer? _timer;
 
   void debounce(VoidCallback callback, {
@@ -72,7 +74,6 @@ class _SearchBarState extends State<SearchBar> {
     if (!mounted) return;
 
     setState(() {
-      _query = query;
       _foods = foods;
     });
   });
@@ -94,7 +95,7 @@ class _SearchBarState extends State<SearchBar> {
             child: CompositedTransformFollower(
               link: _layerLink,
               showWhenUnlinked: false,
-              offset: Offset(0.0, size.height + 5.0),
+              offset: widget.page == 'mainPage' ? Offset(0.0, size.height) : Offset(0.0, size.height + 5.0),
               child: Material(
                   elevation: 4.0,
                   child: ListView.builder(
@@ -102,39 +103,37 @@ class _SearchBarState extends State<SearchBar> {
                       shrinkWrap: true,
                       itemCount: _foods.length,
                       itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            if (widget.page != 'writeReviewPage') {
-                              Navigator.of(context).pushNamed(
-                                  '/res-info',
-                                  arguments: ResInfoScreenArguments(
-                                      _foods[index].id
-                                  )
-                              );
-                            } else {
-                              Foods food = Foods(
-                                  id: _foods[index].id,
-                                  imgPath: _foods[index].imgPath,
-                                  name: _foods[index].name,
-                                  rate: _foods[index].rate,
-                                  reviewCount: _foods[index].reviewCount
-                              );
-                              if (widget.callback != null) {
-                                widget.callback!(food);
+                        return TextButton(
+                            onPressed: () {
+                              if (widget.page != 'writeReviewPage') {
+                                Navigator.of(context).pushNamed(
+                                    '/res-info',
+                                    arguments: ResInfoScreenArguments(
+                                        _foods[index].id
+                                    )
+                                );
+                              } else {
+                                Foods food = Foods(
+                                    id: _foods[index].id,
+                                    imgPath: _foods[index].imgPath,
+                                    name: _foods[index].name,
+                                    rate: _foods[index].rate,
+                                    reviewCount: _foods[index].reviewCount
+                                );
+                                if (widget.callback != null) {
+                                  widget.callback!(food);
+                                }
+                                _focusNode.unfocus();
                               }
-                              _focusNode.unfocus();
-                            }
-                          },
-                          child: ListTile(
-                              leading: Image.asset(
-                                  _foods[index].imgPath,
-                                  width: 50,
-                                  height: 50,
-                                  fit: BoxFit.cover
-                              ),
-                              title: Text(_foods[index].name),
-                              subtitle: Text('평점: ${_foods[index].rate}')
-                          )
+                            },
+                            style: TextButton.styleFrom(
+                                padding: EdgeInsets.zero
+                            ),
+                            child: CustomListTile(
+                                imgPath: _foods[index].imgPath,
+                                name: _foods[index].name,
+                                rate: _foods[index].rate
+                            )
                         );
                       }
                   )
@@ -187,10 +186,14 @@ class _SearchBarState extends State<SearchBar> {
                                         _searchFood(val);
                                       },
                                       onSubmitted: (val) {
-                                        setState(() {
-                                          _query = _searchController.text;
-                                        });
-                                        print("search: $_query");
+                                        Navigator.of(context).pushNamed(
+                                            '/res-list',
+                                            arguments: ResListScreenArguments(
+                                                null,
+                                                null,
+                                                val
+                                            )
+                                        );
                                       }
                                   )
                                 )
@@ -261,19 +264,17 @@ class _SearchBarState extends State<SearchBar> {
                                   color: const Color(0xFF898989)
                               ),
                           onPressed: () {
-                            _focusNode.hasFocus == false ? _focusNode.requestFocus() : _focusNode.unfocus();
+                            if (_focusNode.hasFocus) {
+                              _searchController.text = '';
+                            }
+                            _focusNode.hasFocus ? _focusNode.unfocus() : _focusNode.requestFocus();
                           }
                       )
                   )
               ),
               onChanged: (val) {
                 _searchFood(val);
-              },
-              onSubmitted: (val) {
-                setState(() {
-                  _query = _searchController.text;
-                });
-              },
+              }
             )
           )
       );
