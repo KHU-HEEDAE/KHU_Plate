@@ -8,5 +8,7 @@ import java.util.List;
 public interface FoodRepository extends JpaRepository<Food,Long> {
     Food save(Food food);
     List<Food> findAllByCategoryId(Long id);
+    List<Food> findAllByCategoryIdOrderByRateDesc(Long id);
+    List<Food> findAllByCategoryIdOrderByReviewNumDesc(Long id);
     List<Food> findByNameContaining(String keyword);
 }
