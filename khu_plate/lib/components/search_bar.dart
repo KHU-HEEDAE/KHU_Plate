@@ -147,6 +147,8 @@ class _SearchBarState extends State<SearchBar> {
 
   bool _isSearching = false;
 
+  String mainPageSearch = '';
+
   @override
   Widget build(BuildContext context) {
     late Widget child;
@@ -160,44 +162,72 @@ class _SearchBarState extends State<SearchBar> {
                   children: [
                     Visibility(
                         visible: _isSearching,
-                        child: Theme(
-                            data: ThemeData(
-                                primaryColor: Colors.white,
-                                hintColor: Colors.white
-                            ),
-                            child: Expanded(
-                                child: CompositedTransformTarget(
-                                  link: _layerLink,
-                                  child: TextField(
-                                      focusNode: _focusNode,
-                                      controller: _searchController,
-                                      style: const TextStyle(color: Colors.white),
-                                      cursorColor: Colors.white,
-                                      decoration: const InputDecoration(
-                                          enabledBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.white),
-                                          ),
-                                          focusedBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.white),
-                                          ),
-                                          hintText: "음식점을 검색하세요!"
-                                      ),
-                                      onChanged: (val) {
-                                        _searchFood(val);
-                                      },
-                                      onSubmitted: (val) {
-                                        Navigator.of(context).pushNamed(
-                                            '/res-list',
-                                            arguments: ResListScreenArguments(
-                                                null,
-                                                null,
-                                                val
+                        child: Expanded(
+                          child: Row(
+                              children: [
+                                Theme(
+                                    data: ThemeData(
+                                        primaryColor: Colors.white,
+                                        hintColor: Colors.white
+                                    ),
+                                    child: Expanded(
+                                        child: CompositedTransformTarget(
+                                            link: _layerLink,
+                                            child: TextField(
+                                                focusNode: _focusNode,
+                                                controller: _searchController,
+                                                style: const TextStyle(color: Colors.white),
+                                                cursorColor: Colors.white,
+                                                decoration: const InputDecoration(
+                                                    enabledBorder: UnderlineInputBorder(
+                                                      borderSide: BorderSide(color: Colors.white),
+                                                    ),
+                                                    focusedBorder: UnderlineInputBorder(
+                                                      borderSide: BorderSide(color: Colors.white),
+                                                    ),
+                                                    hintText: "음식점을 검색하세요!"
+                                                ),
+                                                onChanged: (val) {
+                                                  setState(() {
+                                                    mainPageSearch = val;
+                                                  });
+                                                  _searchFood(val);
+                                                },
+                                                onSubmitted: (val) {
+                                                  Navigator.of(context).pushNamed(
+                                                      '/res-list',
+                                                      arguments: ResListScreenArguments(
+                                                          null,
+                                                          null,
+                                                          val
+                                                      )
+                                                  );
+                                                }
                                             )
-                                        );
-                                      }
-                                  )
+                                        )
+                                    )
+                                ),
+                                SizedBox(
+                                    child: IconButton(
+                                        icon: SizedBox(
+                                            width: 24,
+                                            height: 24,
+                                            child: SvgPicture.asset("assets/icons/search_icon.svg")
+                                        ),
+                                        onPressed: () {
+                                          Navigator.of(context).pushNamed(
+                                              '/res-list',
+                                              arguments: ResListScreenArguments(
+                                                  null,
+                                                  null,
+                                                  mainPageSearch
+                                              )
+                                          );
+                                        }
+                                    )
                                 )
-                            )
+                              ]
+                          )
                         )
                     ),
                     SizedBox(
