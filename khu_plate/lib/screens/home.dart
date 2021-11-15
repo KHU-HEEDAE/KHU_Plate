@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:khu_plate/modules/res_list_screen_arguments.dart';
 import '../components/home_carousel.dart';
 import '../components/search_bar.dart';
 import '../modules/res_info_screen_arguments.dart';
@@ -20,14 +23,30 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   bool get wantKeepAlive => true;
 
   @override
+  void initState() {
+    super.initState();
+    _getFoods;
+  }
+
+  @override
   void dispose() {
     _categoryController.dispose();
     _orderController.dispose();
     super.dispose();
   }
 
-  Future<List<Foods>> _getFoods() async {
-    return await FoodApi.getFoods('');
+  late List<Foods> _foodsList;
+
+  Future _getFoods() async {
+    _foodsList = await FoodApi.getCategory(_curCategoryIdx, _curOrderIdx);
+  }
+
+  Future _getFiltered() async {
+    final result = await FoodApi.getCategory(_curCategoryIdx, _curOrderIdx);
+
+    setState(() {
+      _foodsList = result;
+    });
   }
 
   final _thumbWheels = ["카테고리", "기준"];
@@ -132,6 +151,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                                                 setState(() {
                                                                   _curCategoryIdx = index;
                                                                 });
+                                                                _getFiltered();
                                                               })
                                                           : PageView.builder(
                                                               controller: _orderController,
@@ -172,6 +192,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                                                 setState(() {
                                                                   _curOrderIdx = index;
                                                                 });
+                                                                _getFiltered();
                                                               }),
                                                       Positioned(
                                                           left: 20,
@@ -261,7 +282,16 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                                 width: 50,
                                                 height: 14,
                                                 child: TextButton(
-                                                    onPressed: () {},
+                                                    onPressed: () {
+                                                      Navigator.of(context).pushNamed(
+                                                          '/res-list',
+                                                          arguments: ResListScreenArguments(
+                                                              _curCategoryIdx,
+                                                              _curOrderIdx,
+                                                              null
+                                                          )
+                                                      );
+                                                    },
                                                     style: TextButton.styleFrom(
                                                         padding: EdgeInsets.zero
                                                     ),
@@ -300,7 +330,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                     scrollDirection: Axis.horizontal,
                                     child: FutureBuilder(
                                         future: _getFoods(),
-                                        builder: (context, AsyncSnapshot<List<Foods>> snapshot) {
+                                        builder: (context, snapshot) {
                                           Widget child;
 
                                           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -341,12 +371,11 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                                 )
                                             );
                                           } else if (snapshot.connectionState == ConnectionState.done) {
-                                            if (snapshot.hasData) {
                                               child = Row(
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   mainAxisAlignment: MainAxisAlignment.start,
                                                   children: [
-                                                    for (var i = 0; i < snapshot.data!.length; i++)
+                                                    for (var i = 0; i < _foodsList.length; i++)
                                                       Padding(
                                                           padding: const EdgeInsets.only(left: 10, bottom: 5),
                                                           child: GestureDetector(
@@ -354,7 +383,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                                                 Navigator.of(context).pushNamed(
                                                                     '/res-info',
                                                                     arguments: ResInfoScreenArguments(
-                                                                        snapshot.data![i].id
+                                                                        _foodsList[i].id
                                                                     )
                                                                 );
                                                               },
@@ -364,7 +393,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                                                   decoration: BoxDecoration(
                                                                       color: Colors.white,
                                                                       image: DecorationImage(
-                                                                          image: AssetImage(snapshot.data![i].imgPath),
+                                                                          image: AssetImage(_foodsList[i].imgPath),
                                                                           fit: BoxFit.cover
                                                                       ),
                                                                       boxShadow: const [
@@ -402,7 +431,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                                                               children: [
                                                                                 SizedBox(
                                                                                     child: Text(
-                                                                                        snapshot.data![i].name,
+                                                                                        _foodsList[i].name,
                                                                                         style: const TextStyle(
                                                                                             fontWeight: FontWeight.w500,
                                                                                             fontSize: 16,
@@ -421,7 +450,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                                                                           ),
                                                                                           const SizedBox(width: 2),
                                                                                           Text(
-                                                                                            '${snapshot.data![i].rate}',
+                                                                                            '${_foodsList[i].rate}',
                                                                                             style: const TextStyle(
                                                                                                 fontSize: 14,
                                                                                                 color: Colors.white
@@ -429,7 +458,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                                                                           ),
                                                                                           const SizedBox(width: 5),
                                                                                           Text(
-                                                                                              '(${snapshot.data![i].reviewCount}개의 리뷰)',
+                                                                                              '(${_foodsList[i].reviewCount}개의 리뷰)',
                                                                                               style: const TextStyle(
                                                                                                 fontSize: 12,
                                                                                                 fontWeight: FontWeight.w400,
@@ -449,13 +478,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                                       )
                                                   ]
                                               );
-                                            } else if (snapshot.hasError) {
-                                              child = Text('data: ${snapshot.data},\nerror: ${snapshot.error}');
-                                            } else {
-                                              child = const Text('connection error');
-                                            }
                                           } else {
-                                            child = const Text('connection error');
+                                            child = Text('data: ${snapshot.data},\nerror: ${snapshot.error}');
                                           }
 
                                           return child;

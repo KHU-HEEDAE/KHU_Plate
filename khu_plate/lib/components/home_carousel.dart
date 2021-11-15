@@ -86,7 +86,7 @@ class _CarouselState extends State<Carousel> {
                                           '/res-list',
                                           arguments: ResListScreenArguments(
                                               snapshot.data![i].categoryId,
-                                              1,
+                                              0,
                                               null
                                           )
                                       );
@@ -176,7 +176,19 @@ class _CarouselState extends State<Carousel> {
                                 }
                             );
                           } else if (snapshot.hasError) {
-                            child = const Text('error');
+                            child = SizedBox(
+                              height: 240,
+                              width: MediaQuery.of(context).size.width,
+                              child: const Center(
+                                child: Text(
+                                    'Connection Error\n연결 오류',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 14
+                                  )
+                                )
+                              )
+                            );
                           }
                         } else {
                           child = const Text('error');
