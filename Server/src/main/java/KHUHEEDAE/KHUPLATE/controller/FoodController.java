@@ -4,6 +4,7 @@ import KHUHEEDAE.KHUPLATE.domain.Food;
 import KHUHEEDAE.KHUPLATE.dto.FoodDTO;
 import KHUHEEDAE.KHUPLATE.dto.FoodDetailDTO;
 import KHUHEEDAE.KHUPLATE.service.FoodService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

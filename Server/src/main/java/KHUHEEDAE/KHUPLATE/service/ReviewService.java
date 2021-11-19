@@ -21,7 +21,7 @@ public class ReviewService {
 
     //최신리뷰순으로 조회
     public List<Review> findAll(){
-        return reviewRepository.findAllOrderByDateDesc();
+        return reviewRepository.findAll();
     }
 
     public void write(Review review){
