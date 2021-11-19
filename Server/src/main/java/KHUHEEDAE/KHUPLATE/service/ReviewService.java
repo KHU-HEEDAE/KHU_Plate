@@ -19,6 +19,7 @@ public class ReviewService {
 
     private final ReviewRepository reviewRepository;
 
+    //최신리뷰순으로 조회
     public List<Review> findAll(){
         return reviewRepository.findAll();
     }

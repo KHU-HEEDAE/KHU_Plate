@@ -27,11 +27,13 @@ public class ReviewDTO {
     }
 
     public Review toEntity(){
-        return Review.builder()
-                .content(content)
-                .reviewer(reviewer)
-                .rate(rate)
-                .build();
+        Review review = new Review();
+        review.setContent(this.content);
+        review.setReviewer(this.reviewer);
+        review.setDate(this.date);
+        review.setRate(this.rate);
+        review.setId(this.id);
+        return review;
     }
 
 

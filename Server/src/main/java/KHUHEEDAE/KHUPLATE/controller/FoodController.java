@@ -4,8 +4,10 @@ import KHUHEEDAE.KHUPLATE.domain.Food;
 import KHUHEEDAE.KHUPLATE.dto.FoodDTO;
 import KHUHEEDAE.KHUPLATE.dto.FoodDetailDTO;
 import KHUHEEDAE.KHUPLATE.service.FoodService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,9 +33,13 @@ public class FoodController {
     }
 
     //카테고리별 음식점조회
-    @GetMapping("/food/category/{category_id}")
-    public List<FoodDTO> viewCategoryFoodList(@PathVariable("category_id") Long categoryId){
-        List<Food> foodList = foodService.findAllByCategory(categoryId);
+    @GetMapping("/food/category/{category_id}/{priority_id}")
+    public List<FoodDTO> viewCategoryFoodList(@PathVariable("category_id") Long categoryId, @PathVariable("priority_id") Long priorityId){
+        List<Food> foodList = new ArrayList<>();
+        if(priorityId==0) foodList = foodService.findAllByCategory(categoryId); //아무거나
+        else if(priorityId==1) foodList = foodService.findAllByCategoryOrderByRate(categoryId); //별점높은순
+        else if(priorityId==2) foodList = foodService.findAllByCategoryOrderByReview(categoryId); //리뷰개수순
+
         List<FoodDTO> result = foodList.stream()
                 .filter(food -> food!=null)
                 .map(FoodDTO::new)

@@ -37,6 +37,12 @@ public class FoodService {
     public List<Food> findAllByCategory(Long categoryId){
         return foodRepository.findAllByCategoryId(categoryId);
     }
+    public List<Food> findAllByCategoryOrderByRate(Long categoryId){
+        return foodRepository.findAllByCategoryIdOrderByRateDesc(categoryId);
+    }
+    public List<Food> findAllByCategoryOrderByReview(Long categoryId){
+        return foodRepository.findAllByCategoryIdOrderByReviewNumDesc(categoryId);
+    }
 
     public List<FoodDTO> searchAll(String keyword){
         List<Food> foodList = foodRepository.findByNameContaining(keyword);
