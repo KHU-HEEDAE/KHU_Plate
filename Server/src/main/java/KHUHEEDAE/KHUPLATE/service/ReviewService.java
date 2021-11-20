@@ -1,5 +1,6 @@
 package KHUHEEDAE.KHUPLATE.service;
 
+import KHUHEEDAE.KHUPLATE.domain.Food;
 import KHUHEEDAE.KHUPLATE.domain.Review;
 import KHUHEEDAE.KHUPLATE.dto.ReviewDTO;
 import KHUHEEDAE.KHUPLATE.repository.FoodRepository;
@@ -28,7 +29,9 @@ public class ReviewService {
     }
 
     public void write(Review review,Long foodId){
-        review.setFood(foodRepository.findById(foodId).get());
+        Food food = foodRepository.findById(foodId).get();
+        food.addReview(review);
+        review.setFood(food);
         reviewRepository.save(review);
     }
 

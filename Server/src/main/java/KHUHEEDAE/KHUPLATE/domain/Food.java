@@ -42,11 +42,19 @@ public class Food {
     @OneToMany(mappedBy = "food")
     private List<Review> reviewList = new ArrayList<Review>();
 
+    public void insertReview(Review review){
+        rate = (this.rate*reviewNum+review.getRate())/(reviewNum+1);
+        reviewNum++;
+    }
+
     public void addReview(Review review){
         this.reviewList.add(review);
+        insertReview(review);
         if(review.getFood()!=this){
             review.setFood(this);
         }
     }
+
+
 
 }
