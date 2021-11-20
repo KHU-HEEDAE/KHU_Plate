@@ -36,7 +36,8 @@ public class FoodController {
     @GetMapping("/food/category/{category_id}/{priority_id}")
     public List<FoodDTO> viewCategoryFoodList(@PathVariable("category_id") Long categoryId, @PathVariable("priority_id") Long priorityId){
         List<Food> foodList = new ArrayList<>();
-        if(priorityId==0) foodList = foodService.findAllByCategory(categoryId); //아무거나
+        if(categoryId==0) foodList = foodService.findAnyByPriority(priorityId);
+        else if(priorityId==0) foodList = foodService.findAllByCategory(categoryId); //아무거나
         else if(priorityId==1) foodList = foodService.findAllByCategoryOrderByRate(categoryId); //별점높은순
         else if(priorityId==2) foodList = foodService.findAllByCategoryOrderByReview(categoryId); //리뷰개수순
 
