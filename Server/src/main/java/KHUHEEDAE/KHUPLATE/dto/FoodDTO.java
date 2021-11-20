@@ -13,7 +13,7 @@ import lombok.Setter;
 public class FoodDTO {
     private Long id;
     private String name;
-    private int rate;
+    private float rate;
     private int reviewNum;
 
     public FoodDTO(Food food){

@@ -30,7 +30,7 @@ public class Food {
     private String tel;
 
     @Column(name="FOOD_RATE", nullable = false)
-    private int rate;
+    private float rate;
 
     @Column(name="FOOD_REVIEW_NUM", nullable = false)
     private int reviewNum;

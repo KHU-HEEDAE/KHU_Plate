@@ -23,8 +23,8 @@ public class Review {
     @Column(name="REVIEW_CONTENT")
     private String content;
 
-    @Column(name="REVIEW_RATE",nullable = false)
-    private int rate;
+    @Column(name="REVIEW_RATING",nullable = false)
+    private float rate;
 
     @Column(name="REVIEW_OWNER",nullable = false)
     private String reviewer;
