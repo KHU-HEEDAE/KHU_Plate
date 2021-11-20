@@ -17,7 +17,7 @@ import java.util.List;
 public class FoodDetailDTO {
     private Long id;
     private String name;
-    private int rate;
+    private float rate;
     private int reviewNum;
     private String address;
     private String tel;

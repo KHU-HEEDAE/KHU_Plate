@@ -34,6 +34,12 @@ public class FoodService {
         return food.get();
     }
 
+    public List<Food> findAnyByPriority(Long priorityId){
+        if(priorityId==0) return foodRepository.findAll();
+        else if(priorityId==1) return foodRepository.findAllByOrderByRateDesc();
+        else if(priorityId==2) return foodRepository.findAllByOrderByReviewNumDesc();
+        else return null;
+    }
     public List<Food> findAllByCategory(Long categoryId){
         return foodRepository.findAllByCategoryId(categoryId);
     }

@@ -1,5 +1,6 @@
 package KHUHEEDAE.KHUPLATE.dto;
 
+import KHUHEEDAE.KHUPLATE.domain.Food;
 import KHUHEEDAE.KHUPLATE.domain.Review;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +17,8 @@ public class ReviewDTO {
     private String content;
     private String reviewer;
     private LocalDateTime date;
-    private int rate;
+    private float rate;
+    private Long foodId;
 
     public ReviewDTO(Review review){
         this.id=review.getId();
@@ -24,6 +26,7 @@ public class ReviewDTO {
         this.reviewer=review.getReviewer();
         this.date=review.getDate();
         this.rate = review.getRate();
+        this.foodId=review.getFood().getId();
     }
 
     public Review toEntity(){
@@ -32,7 +35,6 @@ public class ReviewDTO {
         review.setReviewer(this.reviewer);
         review.setDate(this.date);
         review.setRate(this.rate);
-        review.setId(this.id);
         return review;
     }
 

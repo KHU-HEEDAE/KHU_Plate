@@ -34,7 +34,7 @@ public class ReviewController {
     //리뷰 추가
     @PostMapping("/review")
     public String writeReview(@RequestBody ReviewDTO request){
-        reviewService.write(request.toEntity());
+        reviewService.write(request.toEntity(),request.getFoodId());
         return "리뷰 추가";
     }
 
