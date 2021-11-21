@@ -34,7 +34,7 @@ class Food {
         name: json['name'],
         address: json['address'] ??= "[주소가 등록되지 않았습니다]",
         tel: json['tel'] ??= "[전화번호가 등록되지 않았습니다]",
-        reviewCount: json['review_count'],
+        reviewCount: json['reviewNum'],
         rate: json['rate'].toDouble(),
         imgPath: json['image'] ??= img,
         reviews: _reviews
@@ -46,7 +46,7 @@ class Food {
     'name': name,
     'address': address,
     'tel': tel,
-    'review_count': reviewCount,
+    'reviewNum': reviewCount,
     'rate': rate,
     'image': imgPath,
     'review': reviews
@@ -71,7 +71,7 @@ class Foods {
   factory Foods.fromJson(Map<String, dynamic> json, img) => Foods(
       id: json['id'],
       name: json['name'],
-      reviewCount: json['review_count'],
+      reviewCount: json['reviewNum'],
       rate: json['rate'].toDouble(),
       imgPath: json['image'] ??= img
   );
@@ -79,7 +79,7 @@ class Foods {
   Map<String, dynamic> toJson() => {
     'id': id,
     'name': name,
-    'review_count': reviewCount,
+    'reviewNum': reviewCount,
     'rate': rate,
     'image': imgPath
   };

@@ -529,10 +529,9 @@ class _WriteReviewState extends State<WriteReview> with AutomaticKeepAliveClient
                                   await ReviewApi.postReview(
                                       ReviewPost(
                                           foodId: _food!.id,
-                                          userId: 0,
+                                          reviewer: '작성자',
                                           rate: _rateValue,
                                           content: _reviewTxt,
-                                          imgPath: _imageFile.toString()
                                       )
                                   );
                                   setState(() {
