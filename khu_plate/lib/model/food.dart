@@ -1,4 +1,5 @@
 import 'review.dart';
+import 'dart:math';
 
 class Food {
   final int id;
@@ -21,13 +22,35 @@ class Food {
     required this.reviews
   });
 
-  factory Food.fromJson(Map<String, dynamic> json, img) {
-
+  factory Food.fromJson(Map<String, dynamic> json) {
     List<Review> _reviews = [];
 
     json['reviews'].forEach(
         (var json) => _reviews.add(Review.fromJson(json))
     );
+
+    Random random = Random();
+    int ranNum = random.nextInt(5);
+
+    var img = '';
+
+    switch(ranNum) {
+      case 0:
+        img = "assets/banner_images/food1.png";
+        break;
+      case 1:
+        img = "assets/banner_images/food2.png";
+        break;
+      case 2:
+        img = "assets/banner_images/food3.png";
+        break;
+      case 3:
+        img = "assets/banner_images/food4.png";
+        break;
+      case 4:
+        img = "assets/banner_images/food5.png";
+        break;
+    }
 
     return Food(
         id: json['id'],
@@ -68,13 +91,38 @@ class Foods {
     required this.imgPath
   });
 
-  factory Foods.fromJson(Map<String, dynamic> json, img) => Foods(
-      id: json['id'],
-      name: json['name'],
-      reviewCount: json['reviewNum'],
-      rate: json['rate'].toDouble(),
-      imgPath: json['image'] ??= img
-  );
+  factory Foods.fromJson(Map<String, dynamic> json) {
+    Random random = Random();
+    int ranNum = random.nextInt(5);
+
+    var img = '';
+
+    switch(ranNum) {
+      case 0:
+        img = "assets/banner_images/food1.png";
+        break;
+      case 1:
+        img = "assets/banner_images/food2.png";
+        break;
+      case 2:
+        img = "assets/banner_images/food3.png";
+        break;
+      case 3:
+        img = "assets/banner_images/food4.png";
+        break;
+      case 4:
+        img = "assets/banner_images/food5.png";
+        break;
+    }
+
+    return Foods(
+        id: json['id'],
+        name: json['name'],
+        reviewCount: json['reviewNum'],
+        rate: json['rate'].toDouble(),
+        imgPath: json['image'] ??= img
+    );
+  }
 
   Map<String, dynamic> toJson() => {
     'id': id,

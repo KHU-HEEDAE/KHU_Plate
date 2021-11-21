@@ -12,38 +12,18 @@ class FoodApi {
     final res = await http.get(url);
     
     jsonDecode(utf8.decode(res.bodyBytes));
-    
-    var img = '';
-
-    switch(ranNum) {
-      case 0:
-        img = "assets/banner_images/food1.png";
-        break;
-      case 1:
-        img = "assets/banner_images/food2.png";
-        break;
-      case 2:
-        img = "assets/banner_images/food3.png";
-        break;
-      case 3:
-        img = "assets/banner_images/food4.png";
-        break;
-      case 4:
-        img = "assets/banner_images/food5.png";
-        break;
-    }
 
       final List foods = json.decode(res.body);
 
       if (query != '') {
-        return foods.map((json) => Foods.fromJson(json, img)).where((food) {
+        return foods.map((json) => Foods.fromJson(json)).where((food) {
           final name = food.name.replaceAll(' ', '');
           final match = query.replaceAll(' ', '');
 
           return name.contains(match);
         }).toList();
       } else {
-        return foods.map((json) => Foods.fromJson(json, img)).toList();
+        return foods.map((json) => Foods.fromJson(json)).toList();
       }
   }
 
@@ -53,29 +33,9 @@ class FoodApi {
 
     jsonDecode(utf8.decode(res.bodyBytes));
 
-    var img = '';
-
-    switch(ranNum) {
-      case 0:
-        img = "assets/banner_images/food1.png";
-        break;
-      case 1:
-        img = "assets/banner_images/food2.png";
-        break;
-      case 2:
-        img = "assets/banner_images/food3.png";
-        break;
-      case 3:
-        img = "assets/banner_images/food4.png";
-        break;
-      case 4:
-        img = "assets/banner_images/food5.png";
-        break;
-    }
-
       final food = json.decode(res.body);
 
-      return Food.fromJson(food, img);
+      return Food.fromJson(food);
   }
   
   static Future<List<Foods>> getCategory(int categoryId, int priorityId) async {
@@ -84,28 +44,8 @@ class FoodApi {
 
     jsonDecode(utf8.decode(res.bodyBytes));
 
-    var img = '';
-
-    switch(ranNum) {
-      case 0:
-        img = "assets/banner_images/food1.png";
-        break;
-      case 1:
-        img = "assets/banner_images/food2.png";
-        break;
-      case 2:
-        img = "assets/banner_images/food3.png";
-        break;
-      case 3:
-        img = "assets/banner_images/food4.png";
-        break;
-      case 4:
-        img = "assets/banner_images/food5.png";
-        break;
-    }
-
       final List foods = json.decode(res.body);
 
-      return foods.map((json) => Foods.fromJson(json, img)).toList();
+      return foods.map((json) => Foods.fromJson(json)).toList();
   }
 }
