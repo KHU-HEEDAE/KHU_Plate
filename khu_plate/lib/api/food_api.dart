@@ -10,6 +10,9 @@ class FoodApi {
   static Future<List<Foods>> getFoods(String query) async {
     final url = Uri.parse('http://10.0.2.2:8080/api/food');
     final res = await http.get(url);
+    
+    jsonDecode(utf8.decode(res.bodyBytes));
+    
     var img = '';
 
     switch(ranNum) {
@@ -52,6 +55,8 @@ class FoodApi {
     final url = Uri.parse('http://10.0.2.2:8080/api/food/$query');
     final res = await http.get(url);
 
+    jsonDecode(utf8.decode(res.bodyBytes));
+
     var img = '';
 
     switch(ranNum) {
@@ -84,6 +89,9 @@ class FoodApi {
   static Future<List<Foods>> getCategory(int categoryId, int priorityId) async {
     final url = Uri.parse('http://10.0.2.2:8080/api/food/category/${categoryId.toString()}/${priorityId.toString()}');
     final res = await http.get(url);
+
+    jsonDecode(utf8.decode(res.bodyBytes));
+
     var img = '';
 
     switch(ranNum) {
