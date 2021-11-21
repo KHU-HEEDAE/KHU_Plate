@@ -21,11 +21,11 @@ public class FoodDetailDTO {
     private int reviewNum;
     private String address;
     private String tel;
-    private List<ReviewDTO> reviewDTOList = new ArrayList<ReviewDTO>();
+    private List<ReviewDTO> reviews = new ArrayList<ReviewDTO>();
 
     //연관관계 메서드
     public void addReview(Review review){
-        this.reviewDTOList.add(new ReviewDTO(review));
+        this.reviews.add(new ReviewDTO(review));
     }
 
     public FoodDetailDTO(Food food){
