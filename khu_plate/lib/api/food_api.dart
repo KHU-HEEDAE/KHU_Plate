@@ -33,7 +33,6 @@ class FoodApi {
         break;
     }
 
-    if (res.statusCode == 200) {
       final List foods = json.decode(res.body);
 
       if (query != '') {
@@ -46,9 +45,6 @@ class FoodApi {
       } else {
         return foods.map((json) => Foods.fromJson(json, img)).toList();
       }
-    } else {
-      throw Exception();
-    }
   }
 
   static Future<Food> getFood(String query) async {
@@ -77,13 +73,9 @@ class FoodApi {
         break;
     }
 
-    if (res.statusCode == 200) {
       final food = json.decode(res.body);
 
       return Food.fromJson(food, img);
-    } else {
-      throw Exception();
-    }
   }
   
   static Future<List<Foods>> getCategory(int categoryId, int priorityId) async {
@@ -112,12 +104,8 @@ class FoodApi {
         break;
     }
 
-    if (res.statusCode == 200) {
       final List foods = json.decode(res.body);
 
       return foods.map((json) => Foods.fromJson(json, img)).toList();
-    } else {
-      throw Exception();
-    }
   }
 }
