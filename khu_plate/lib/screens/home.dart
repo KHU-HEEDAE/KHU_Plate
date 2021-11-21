@@ -455,7 +455,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                                                                         ),
                                                                                         const SizedBox(width: 2),
                                                                                         Text(
-                                                                                          '${_foodsList[i].rate}',
+                                                                                          _foodsList[i].rate.toStringAsFixed(1),
                                                                                           style: const TextStyle(
                                                                                               fontSize: 14,
                                                                                               color: Colors.white
