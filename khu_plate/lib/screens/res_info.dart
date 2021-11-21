@@ -304,8 +304,8 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
                                                                 width: 66,
                                                                 height: 18,
                                                                 child: TextButton(
-                                                                    onPressed: () {
-                                                                      Navigator.of(context).pushNamed(
+                                                                    onPressed: () async {
+                                                                      await Navigator.of(context).pushNamed(
                                                                           '/write-review',
                                                                           arguments: WriteReviewScreenArguments(
                                                                               widget.id,
@@ -315,6 +315,7 @@ class _ResInfoState extends State<ResInfo> with TickerProviderStateMixin {
                                                                               snapshot.data!.reviewCount
                                                                           )
                                                                       );
+                                                                      setState(() { });
                                                                     },
                                                                     style: TextButton.styleFrom(
                                                                         padding: EdgeInsets.zero

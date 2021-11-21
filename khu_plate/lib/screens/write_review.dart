@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:khu_plate/api/review_api.dart';
 import 'package:khu_plate/model/review.dart';
+import 'package:khu_plate/modules/res_info_screen_arguments.dart';
 import '../components/search_bar.dart';
 import '../model/food.dart';
 
@@ -534,6 +535,7 @@ class _WriteReviewState extends State<WriteReview> with AutomaticKeepAliveClient
                                           content: _reviewTxt,
                                       )
                                   );
+                                  /*
                                   setState(() {
                                     _food = null;
                                     _rateValue = 0.0;
@@ -541,7 +543,14 @@ class _WriteReviewState extends State<WriteReview> with AutomaticKeepAliveClient
                                     _reviewTxt = '';
                                     _reviewTxtController.text = '';
                                   });
+                                   */
                                   _alertWriter(context, 'success');
+                                  Navigator.of(context).pushNamed(
+                                      '/res-info',
+                                      arguments: ResInfoScreenArguments(
+                                          _food!.id
+                                      )
+                                  );
                                 } catch(e) {
                                   print(e);
                                   _alertWriter(context, 'post');
