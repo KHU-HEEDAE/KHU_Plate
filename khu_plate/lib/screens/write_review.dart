@@ -544,7 +544,6 @@ class _WriteReviewState extends State<WriteReview> with AutomaticKeepAliveClient
                                     _reviewTxtController.text = '';
                                   });
                                    */
-                                  _alertWriter(context, 'success');
                                   Navigator.of(context).pushNamed(
                                       '/res-info',
                                       arguments: ResInfoScreenArguments(

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'dart:math';
 
 class Review {
   final int id;
@@ -19,15 +20,40 @@ class Review {
     required this.avatarPath
   });
 
-  factory Review.fromJson(Map<String, dynamic> json) => Review(
-      id: json['id'],
-      foodId: json['foodId'],
-      username: json['reviewer'],
-      rate: json['rate'].toDouble(),
-      content: json['content'] ??= "",
-      imgPath: json['image'] ??= "",
-      avatarPath: json['avatar_path'] ??= "assets/icons/avatar_icon.png"
-  );
+  factory Review.fromJson(Map<String, dynamic> json) {
+    Random random = Random();
+    int ranNum = random.nextInt(5);
+
+    var img = '';
+
+    switch(ranNum) {
+      case 0:
+        img = "assets/banner_images/food1.png";
+        break;
+      case 1:
+        img = "assets/banner_images/food2.png";
+        break;
+      case 2:
+        img = "assets/banner_images/food3.png";
+        break;
+      case 3:
+        img = "assets/banner_images/food4.png";
+        break;
+      case 4:
+        img = "assets/banner_images/food5.png";
+        break;
+    }
+
+    return Review(
+        id: json['id'],
+        foodId: json['foodId'],
+        username: json['reviewer'],
+        rate: json['rate'].toDouble(),
+        content: json['content'] ??= "",
+        imgPath: json['image'] ??= img,
+        avatarPath: json['avatar_path'] ??= "assets/icons/avatar_icon.png"
+    );
+  }
 }
 
 class ReviewPost {

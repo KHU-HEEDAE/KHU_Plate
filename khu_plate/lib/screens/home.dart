@@ -431,7 +431,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                                                                         child: Column(
                                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                                             children: [
-                                                                              SizedBox(
+                                                                              Container(
+                                                                                  padding: const EdgeInsets.only(right: 10),
                                                                                   child: Text(
                                                                                       _foodsList[i].name,
                                                                                       style: const TextStyle(
