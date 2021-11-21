@@ -7,9 +7,7 @@ class ReviewApi {
     final url = Uri.parse('http://10.0.2.2:8080/api/review');
     final res = await http.get(url);
 
-    jsonDecode(utf8.decode(res.bodyBytes));
-
-      final List reviews = json.decode(res.body);
+      final List reviews = jsonDecode(utf8.decode(res.bodyBytes));;
 
       return reviews.map((json) => Review.fromJson(json)).toList();
   }
