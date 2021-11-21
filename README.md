@@ -9,6 +9,14 @@
 flutter run -d chrome
 ```
 
+## 💡 Tech Stack
+```
+- Frontend : Flutter
+- Backend : Spring Boot
+- Database: MySQL
+- Version Control : Github, GitKraken
+```
+
 ## 💻 System Architecture
 ![System Architecture](https://user-images.githubusercontent.com/78005346/142754745-01402212-44de-46ba-8803-d4fc62410c0d.png)
 
