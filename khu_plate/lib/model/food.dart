@@ -25,7 +25,7 @@ class Food {
 
     List<Review> _reviews = [];
 
-    json['review'].forEach(
+    json['reviews'].forEach(
         (var json) => _reviews.add(Review.fromJson(json))
     );
 
@@ -49,7 +49,7 @@ class Food {
     'reviewNum': reviewCount,
     'rate': rate,
     'image': imgPath,
-    'review': reviews
+    'reviews': reviews
   };
 }
 
