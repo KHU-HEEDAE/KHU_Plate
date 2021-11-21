@@ -21,7 +21,8 @@ class Food {
     required this.reviews
   });
 
-  factory Food.fromJson(Map<String, dynamic> json) {
+  factory Food.fromJson(Map<String, dynamic> json, img) {
+
     List<Review> _reviews = [];
 
     json['review'].forEach(
@@ -35,7 +36,7 @@ class Food {
         tel: json['tel'] ??= "[전화번호가 등록되지 않았습니다]",
         reviewCount: json['review_count'],
         rate: json['rate'].toDouble(),
-        imgPath: json['image'] ??= "assets/banner_images/default.png",
+        imgPath: json['image'] ??= img,
         reviews: _reviews
     );
   }
@@ -67,12 +68,12 @@ class Foods {
     required this.imgPath
   });
 
-  factory Foods.fromJson(Map<String, dynamic> json) => Foods(
+  factory Foods.fromJson(Map<String, dynamic> json, img) => Foods(
       id: json['id'],
       name: json['name'],
       reviewCount: json['review_count'],
       rate: json['rate'].toDouble(),
-      imgPath: json['image'] ??= "assets/banner_images/default.png"
+      imgPath: json['image'] ??= img
   );
 
   Map<String, dynamic> toJson() => {
