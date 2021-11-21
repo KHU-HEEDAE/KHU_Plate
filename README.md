@@ -9,7 +9,7 @@
 flutter run -d chrome
 ```
 
-## System Architecture
+## 💻 System Architecture
 ![System Architecture](https://user-images.githubusercontent.com/78005346/142754745-01402212-44de-46ba-8803-d4fc62410c0d.png)
 
 ## 👨‍👧‍👦 Contributors (2021/09/10 ~ 2021/11/28)
