@@ -535,7 +535,12 @@ class _WriteReviewState extends State<WriteReview> with AutomaticKeepAliveClient
                                           content: _reviewTxt,
                                       )
                                   );
-                                  /*
+                                  await Navigator.of(context).pushNamed(
+                                      '/res-info',
+                                      arguments: ResInfoScreenArguments(
+                                          _food!.id
+                                      )
+                                  );
                                   setState(() {
                                     _food = null;
                                     _rateValue = 0.0;
@@ -543,13 +548,6 @@ class _WriteReviewState extends State<WriteReview> with AutomaticKeepAliveClient
                                     _reviewTxt = '';
                                     _reviewTxtController.text = '';
                                   });
-                                   */
-                                  Navigator.of(context).pushNamed(
-                                      '/res-info',
-                                      arguments: ResInfoScreenArguments(
-                                          _food!.id
-                                      )
-                                  );
                                 } catch(e) {
                                   print(e);
                                   _alertWriter(context, 'post');

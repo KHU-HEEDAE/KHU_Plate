@@ -28,7 +28,6 @@ class FoodApi {
     final url = Uri.parse('http://10.0.2.2:8080/api/food/$query');
     final res = await http.get(url);
 
-
       final food = jsonDecode(utf8.decode(res.bodyBytes));
 
       return Food.fromJson(food);
