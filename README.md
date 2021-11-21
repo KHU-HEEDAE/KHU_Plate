@@ -14,6 +14,6 @@ flutter run -d chrome
 
 ## 👨‍👧‍👦 Contributors (2021/09/10 ~ 2021/11/28)
 | 김서연 | 임하윤 | 홍여준 |
-| :----: | :----: | :----: |:----: | :----: |
+| :----: | :----: | :----: | :----: | :----: |
 | [@ksy991018](https://github.com/ksy991018) | [@yoonyLim](https://github.com/yoonyLim) | [@programming-alpaca](https://github.com/programming-alpaca) |
 
