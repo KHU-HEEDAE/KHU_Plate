@@ -7,6 +7,9 @@
 ![CodeSize](https://img.shields.io/github/languages/code-size/KHU-HEEDAE/KHU_Plate?style=flat-square)
 ![RepoSize](https://img.shields.io/github/repo-size/KHU-HEEDAE/KHU_Plate?style=flat-square)
 
+## 🛎️ Goal
+비대면 생활로 대학 주변 맛집을 공유하지 못한 학우들을 위해 맛집 커뮤니티 앱 제공
+
 ## 💡 Tech Stack
 
 ### Frontend:
@@ -42,7 +45,7 @@
 
  - 음식점 검색 도중 자동 완성 기능 제공
 
-### 2. 음식점 상세 페이지
+### 2. 음식점 상세 페이지<span id="detailed_page">
 <img src="https://user-images.githubusercontent.com/64838255/142855813-2b30eb56-bff5-414f-ada8-280c5def975f.png" width="200" hegith="400">
 
  - 음식점의 주소, 전화번호, 전체 평점 및 해당 음식점에 대한 리뷰와 전체 리뷰 수 정보 제공<br/>
@@ -57,7 +60,7 @@
 <img src="https://user-images.githubusercontent.com/64838255/142855406-4803ff5f-5284-4d38-b3ca-ee18b25257a0.png" width="200" hegith="400">
 
  - 평가자가 업로드한 사진에 따른 평점 및 본문 열람 기능 제공<br/>
- - "음식점 정보" 버튼 클릭 시 해당 음식점의 *2. 음식점 상세 페이지*로 이동
+ - "음식점 정보" 버튼 클릭 시 해당 음식점의 [2. 음식점 상세 페이지](#detailed_page)로 이동
 
 ### 4. 리뷰 작성 페이지
 <img src="https://user-images.githubusercontent.com/64838255/142855640-fb95dcde-0970-4b44-aca4-527231b863ac.png" width="200" hegith="400">
