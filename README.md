@@ -3,7 +3,7 @@
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=2.5.2&logo=Flutter&logoColor=white)
 
 ### Server:
-![Spring Boot](https://img.shields.io/badge/logo-test-blue?logo=springboot&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring Boot-%#6DB33F.svg?logo=springboot&logoColor=white)
 
 ### Compile and Debug on Chrome:
 ```
