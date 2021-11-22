@@ -1,10 +1,5 @@
 # KHU_Plate
 
-### Compile and Debug on Chrome:
-```
-flutter run -d chrome
-```
-
 ## 💡 Tech Stack
 
 ### Frontend:
@@ -17,7 +12,7 @@ flutter run -d chrome
 ### Database:
 ![MySQL](https://img.shields.io/badge/MySQL-v8.0.2-test?style=flat-square&logo=mysql&logoColor=white&color=4479A1)
 
-### Version Control
+### Version Control:
 ![GitHub](https://img.shields.io/badge/GitHub--test?style=flat-square&logo=github&logoColor=white&color=181717)
 ![GitKraken](https://img.shields.io/badge/GitKraken--test?style=flat-square&logo=gitkraken&logoColor=white&color=179287)
 
