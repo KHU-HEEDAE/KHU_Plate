@@ -1,5 +1,12 @@
 # KHU_Plate
 
+## 📁 Project Information
+
+![LangNum](https://img.shields.io/github/languages/count/KHU-HEEDAE/KHU_Plate?style=flat-square)
+![TopLang](https://img.shields.io/github/languages/top/KHU-HEEDAE/KHU_Plate?style=flat-square)
+![CodeSize](https://img.shields.io/github/languages/code-size/KHU-HEEDAE/KHU_Plate?style=flat-square)
+![RepoSize](https://img.shields.io/github/repo-size/KHU-HEEDAE/KHU_Plate?style=flat-square)
+
 ## 💡 Tech Stack
 
 ### Frontend:
@@ -23,6 +30,19 @@
 <img width="370" alt="khu-app directory tree structure" src="https://user-images.githubusercontent.com/64838255/142825505-27ffe17c-ea13-4e49-88fa-2c328b947a8a.png">
 
 ## 📱 UI Presentation
+
+| UI 사진 | 기능 |
+| --- | --- |
+|![home](https://user-images.githubusercontent.com/64838255/142854663-639013a8-5bef-4ac3-a51c-e564ae09592c.png) | 앱 메인 페이지 UI |
+| ![rest_info](https://user-images.githubusercontent.com/64838255/142855813-2b30eb56-bff5-414f-ada8-280c5def975f.png)
+ | 음식점 상세 페이지 |
+| ![search](https://user-images.githubusercontent.com/64838255/142855936-af5b3ead-2a66-47ff-bb7d-cb560cea3c6e.png)
+ | 음식점 검색 예시 |
+| ![reviews_list](https://user-images.githubusercontent.com/64838255/142854883-f73d152d-5659-4e0f-bacd-eae19d63ec9b.png) | 리뷰 리스트 나열 |
+| ![reviews_grid](https://user-images.githubusercontent.com/64838255/142855207-c11158ec-20b6-4950-80b3-21ad06b207eb.png) | 리뷰 그리드 나열 |
+| ![review_clicked](https://user-images.githubusercontent.com/64838255/142855406-4803ff5f-5284-4d38-b3ca-ee18b25257a0.png) | 리뷰 클릭 시 상세 정보 표시 |
+| ![write_review_page](https://user-images.githubusercontent.com/64838255/142855509-fb7c081d-b4b8-42c0-89c1-89f569ff966b.png) | 리뷰 작성 페이지 |
+| ![reviewing](https://user-images.githubusercontent.com/64838255/142855640-fb95dcde-0970-4b44-aca4-527231b863ac.png) | 리뷰 작성 시 예시 |
 
 ## 👨‍👧‍👦 Contributors (2021/09/10 ~ 2021/11/28)
 | 김서연 | 임하윤 | 홍여준 |
