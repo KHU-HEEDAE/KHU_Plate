@@ -18,7 +18,10 @@ flutter run -d chrome
 ```
 
 ## 💻 System Architecture
-![System Architecture](https://user-images.githubusercontent.com/78005346/142754745-01402212-44de-46ba-8803-d4fc62410c0d.png)
+![System Architecture](https://user-images.githubusercontent.com/64838255/142825363-61e9478b-6069-4a87-8a59-c75505d3908f.png)
+
+## 🌲 Directory Tree Structure
+<img width="370" alt="khu-app directory tree structure" src="https://user-images.githubusercontent.com/64838255/142825505-27ffe17c-ea13-4e49-88fa-2c328b947a8a.png">
 
 ## 👨‍👧‍👦 Contributors (2021/09/10 ~ 2021/11/28)
 | 김서연 | 임하윤 | 홍여준 |
