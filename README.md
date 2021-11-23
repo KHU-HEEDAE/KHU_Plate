@@ -8,18 +8,16 @@
 ![RepoSize](https://img.shields.io/github/repo-size/KHU-HEEDAE/KHU_Plate?style=flat-square)
 
 ## 🛎️ Goal
-비대면 생활로 대학 주변 맛집을 공유하지 못한 학우들을 위해 맛집 커뮤니티 앱 제공
+비대면 생활로 경희대학교 주변 맛집을 공유하지 못한 학우들을 위해 맛집 커뮤니티 앱 제공
 
 ## 💡 Tech Stack
 
-### Frontend:
+### Client: 
 ![Flutter](https://img.shields.io/badge/Flutter-v2.5.2-test?style=flat-square&logo=flutter&logoColor=white&color=02569B)
 ![Dart](https://img.shields.io/badge/Dart-v2.14.4-test?style=flat-square&logo=dart&logoColor=white&color=0175C2)
 
-### Backend:
+### Server:
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-v2.6.0-test?style=flat-square&logo=springboot&logoColor=white&color=6DB33F)
-
-### Database:
 ![MySQL](https://img.shields.io/badge/MySQL-v8.0.2-test?style=flat-square&logo=mysql&logoColor=white&color=4479A1)
 
 ### Version Control:
@@ -33,6 +31,9 @@
 <img width="370" alt="khu-app directory tree structure" src="https://user-images.githubusercontent.com/64838255/142825505-27ffe17c-ea13-4e49-88fa-2c328b947a8a.png">
 
 ## 📱 UI Presentation
+
+### 0. 앱 접속 페이지
+<img src="https://user-images.githubusercontent.com/72537563/142991797-37446b3e-eaf9-4b33-9d2a-526859b1d451.png" width="200" height="400">
 
 ### 1. 앱 메인 페이지 UI
 <img src="https://user-images.githubusercontent.com/64838255/142854663-639013a8-5bef-4ac3-a51c-e564ae09592c.png" width="200" height="400">
